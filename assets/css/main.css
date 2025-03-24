@@ -1,15 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 
-/* Define color variables */
 :root {
-  /* --background-color: #333C43; */
   --background-color: #272e33;
-  --accent-color: #DBBC7F;
-  --text-color: #9DA9A0;
-  --link-hover-color: underline;
+  --accent-color: #dbbc7f;
+  --text-color: #9da9a0;
 }
 
-/* General reset */
 body {
   margin: 0;
   font-family: "Source Code Pro", monospace;
@@ -17,15 +13,26 @@ body {
   color: var(--text-color);
 }
 
-/* Shared styling for top and bottom sections */
 .top,
 .bottom {
   padding: 15px 0;
   display: grid;
-  grid-template-columns: repeat(3, auto); /* Three equal columns */
+  grid-template-columns: repeat(3, auto);
   justify-content: center;
   gap: 20px;
   text-align: center;
+}
+
+.top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .top ul,
@@ -33,7 +40,7 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: contents; /* Grid items remain inline */
+  display: contents;
 }
 
 .top ul li a,
@@ -45,14 +52,13 @@ body {
 
 .top ul li a:hover,
 .bottom ul li a:hover {
-  text-decoration: var(--link-hover-color);
+  color: var(--accent-color);
 }
 
 .bottom ul li {
-  color: var(--text-color); /* Styling for plain text (like the email address) */
+  color: var(--text-color);
 }
 
-/* Hero section styling */
 .hero {
   text-align: center;
   padding: 80px 20px;
