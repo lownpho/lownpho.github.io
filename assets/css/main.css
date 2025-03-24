@@ -14,6 +14,39 @@
   --text-color: #9da9a0;
 }
 
+@keyframes colorCycle {
+  0% {
+    box-shadow: 0 0 20px var(--accent-color);
+  }
+  15% {
+    box-shadow: 0 0 20px var(--red);
+  }
+  30% {
+    box-shadow: 0 0 20px var(--accent-color);
+  }
+  40% {
+    box-shadow: 0 0 20px var(--orange);
+  }
+  55% {
+    box-shadow: 0 0 20px var(--accent-color);
+  }
+  65% {
+    box-shadow: 0 0 20px var(--green);
+  }
+  80% {
+    box-shadow: 0 0 20px var(--accent-color);
+  }
+  90% {
+    box-shadow: 0 0 20px var(--blue);
+  }
+  95% {
+    box-shadow: 0 0 20px var(--purple);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--accent-color);
+  }
+}
+
 body {
   margin: 0;
   font-family: "Source Code Pro", monospace;
@@ -73,6 +106,16 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  height: 33vh;
+  width: 66vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-shadow: 0 0 20px var(--accent-color);
+  border-radius: 50px;
+  animation: colorCycle 60s infinite;
 }
 
 .hero h1 {
