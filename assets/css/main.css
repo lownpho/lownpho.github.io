@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 
 :root {
+  --red: #e67e80;
+  --orange: #e69875;
+  --yellow: #dbbc7f;
+  --green: #a7c080;
+  --blue: #7fbbb3;
+  --aqua: #83c092;
+  --purple: #9d8abf;
+
   --background-color: #272e33;
-  --accent-color: #dbbc7f;
+  --accent-color: var(--yellow);
   --text-color: #9da9a0;
 }
 
