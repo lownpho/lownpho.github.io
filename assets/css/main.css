@@ -61,7 +61,10 @@ body {
 
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .hero h1 {
@@ -72,5 +75,5 @@ body {
 
 .hero p {
   font-size: 1.2em;
-  margin-top: 10px;
+  margin-top: 0.5em;
 }
