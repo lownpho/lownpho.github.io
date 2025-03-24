@@ -54,50 +54,48 @@ body {
   color: var(--text-color);
 }
 
-.top,
-.bottom {
-  padding: 15px 0;
+header {
+  /* No need to position this? */
+  padding: 1rem 0;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
-  gap: 20px;
   text-align: center;
 }
 
-.top {
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-.bottom {
+footer {
   position: absolute;
   bottom: 0;
   width: 100%;
 }
 
-.top ul,
-.bottom ul {
+header ul{
   list-style: none;
   margin: 0;
   padding: 0;
   display: contents;
 }
 
-.top ul li a,
-.bottom ul li a {
+header ul li a{
   color: var(--text-color);
   text-decoration: none;
   font-weight: bold;
 }
 
-.top ul li a:hover,
-.bottom ul li a:hover {
+header ul li a:hover{
   color: var(--accent-color);
 }
 
-.bottom ul li {
-  color: var(--text-color);
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.8em;
+}
+
+footer p em {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hero {
