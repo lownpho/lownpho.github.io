@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+
+/* Define color variables */
+:root {
+  /* --background-color: #333C43; */
+  --background-color: #272e33;
+  --accent-color: #DBBC7F;
+  --text-color: #9DA9A0;
+  --link-hover-color: underline;
+}
+
+/* General reset */
+body {
+  margin: 0;
+  font-family: "Source Code Pro", monospace;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Shared styling for top and bottom sections */
+.top,
+.bottom {
+  padding: 15px 0;
+  display: grid;
+  grid-template-columns: repeat(3, auto); /* Three equal columns */
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.top ul,
+.bottom ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: contents; /* Grid items remain inline */
+}
+
+.top ul li a,
+.bottom ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.top ul li a:hover,
+.bottom ul li a:hover {
+  text-decoration: var(--link-hover-color);
+}
+
+.bottom ul li {
+  color: var(--text-color); /* Styling for plain text (like the email address) */
+}
+
+/* Hero section styling */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  color: var(--accent-color);
+  margin: 0;
+  font-size: 2.5em;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
