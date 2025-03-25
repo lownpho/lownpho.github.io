@@ -16,34 +16,34 @@
 
 @keyframes colorCycle {
   0% {
-    box-shadow: 0 0 20px var(--accent-color);
+    color: var(--accent-color);
   }
-  15% {
-    box-shadow: 0 0 20px var(--red);
+  10% {
+    color: var(--orange);
+  }
+  20% {
+    color: var(--accent-color);
   }
   30% {
-    box-shadow: 0 0 20px var(--accent-color);
+    color: var(--green);
   }
   40% {
-    box-shadow: 0 0 20px var(--orange);
+    color: var(--accent-color);
   }
   55% {
-    box-shadow: 0 0 20px var(--accent-color);
+    color: var(--blue);
   }
   65% {
-    box-shadow: 0 0 20px var(--green);
+    color: var(--accent-color);
   }
   80% {
-    box-shadow: 0 0 20px var(--accent-color);
+    color: var(--purple);
   }
   90% {
-    box-shadow: 0 0 20px var(--blue);
-  }
-  95% {
-    box-shadow: 0 0 20px var(--purple);
+    color: var(--accent-color);
   }
   100% {
-    box-shadow: 0 0 20px var(--accent-color);
+    color: var(--red); /* Red is now the last color */
   }
 }
 
@@ -83,7 +83,7 @@ header ul li a{
 }
 
 header ul li a:hover{
-  color: var(--accent-color);
+  animation: colorCycle 10s infinite;
 }
 
 footer {
@@ -104,22 +104,13 @@ footer p em {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  height: 33vh;
-  width: 66vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  box-shadow: 0 0 20px var(--accent-color);
-  border-radius: 50px;
-  animation: colorCycle 60s infinite;
 }
 
 .hero h1 {
   color: var(--accent-color);
   margin: 0;
   font-size: 2.5em;
+  animation: colorCycle 60s infinite;
 }
 
 .hero p {
