@@ -1,44 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
-@import url("background-shapes.css");
 @import url("colors.css");
 
 :root {
-  --background-color: #272e33;
   --accent-color: var(--yellow);
-  --text-color: #9da9a0;
-}
-
-@keyframes colorCycle {
-  0% {
-    color: var(--accent-color);
-  }
-  10% {
-    color: var(--orange);
-  }
-  20% {
-    color: var(--accent-color);
-  }
-  30% {
-    color: var(--green);
-  }
-  40% {
-    color: var(--accent-color);
-  }
-  55% {
-    color: var(--blue);
-  }
-  65% {
-    color: var(--accent-color);
-  }
-  80% {
-    color: var(--purple);
-  }
-  90% {
-    color: var(--accent-color);
-  }
-  100% {
-    color: var(--red); /* Red is now the last color */
-  }
 }
 
 body {
@@ -48,36 +12,10 @@ body {
   color: var(--text-color);
 }
 
-header {
-  /* No need to position this? */
-  padding: 1rem 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  text-align: center;
-}
-
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-header ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
-}
-
-header ul li a {
-  color: var(--text-color);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-header ul li a:hover {
-  animation: colorCycle 10s infinite;
 }
 
 footer {
@@ -90,24 +28,4 @@ footer p em {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.hero {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.hero h1 {
-  color: var(--accent-color);
-  margin: 0;
-  font-size: 2.5em;
-  animation: colorCycle 60s infinite;
-}
-
-.hero p {
-  font-size: 1.2em;
-  margin-top: 0.5em;
 }

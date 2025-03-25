@@ -1,0 +1,42 @@
+@import url("animations.css");
+
+.articles {
+  text-align: center;
+  padding: 2rem;
+}
+
+.articles h1 {
+  color: var(--accent-color);
+  font-size: 2em;
+  animation: ColorCycle 60s infinite;
+}
+
+.articles p {
+  font-size: 1.2em;
+  margin-top: 1rem;
+}
+
+header {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+header ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header ul li a:hover {
+  animation: colorCycle 10s infinite;
+}

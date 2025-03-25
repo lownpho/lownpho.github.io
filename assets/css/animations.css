@@ -1,0 +1,32 @@
+@keyframes colorCycle {
+  0% {
+    color: var(--accent-color);
+  }
+  10% {
+    color: var(--orange);
+  }
+  20% {
+    color: var(--accent-color);
+  }
+  30% {
+    color: var(--green);
+  }
+  40% {
+    color: var(--accent-color);
+  }
+  55% {
+    color: var(--blue);
+  }
+  65% {
+    color: var(--accent-color);
+  }
+  80% {
+    color: var(--purple);
+  }
+  90% {
+    color: var(--accent-color);
+  }
+  100% {
+    color: var(--red); /* Red is now the last color */
+  }
+}
