@@ -1,14 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("background-shapes.css");
+@import url("colors.css");
 
 :root {
-  --red: #e67e80;
-  --orange: #e69875;
-  --yellow: #dbbc7f;
-  --green: #a7c080;
-  --blue: #7fbbb3;
-  --aqua: #83c092;
-  --purple: #9d8abf;
-
   --background-color: #272e33;
   --accent-color: var(--yellow);
   --text-color: #9da9a0;
@@ -69,20 +63,20 @@ footer {
   width: 100%;
 }
 
-header ul{
+header ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: contents;
 }
 
-header ul li a{
+header ul li a {
   color: var(--text-color);
   text-decoration: none;
   font-weight: bold;
 }
 
-header ul li a:hover{
+header ul li a:hover {
   animation: colorCycle 10s infinite;
 }
 
