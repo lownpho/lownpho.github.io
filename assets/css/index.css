@@ -1,4 +1,4 @@
-@import url("background-shapes.css");
+/* This depends on other files, which are imported somewhere else. Is it bad? */
 
 .hero {
   text-align: center;
