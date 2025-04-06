@@ -14,6 +14,30 @@ body {
   color: var(--text-color);
 }
 
+header {
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  text-align: center;
+}
+
+header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: contents;
+}
+
+header ul li a {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+header ul li a:hover {
+  animation: colorCycle 10s infinite;
+}
+
 footer {
   position: absolute;
   bottom: 0;
@@ -30,4 +54,8 @@ footer p em {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+a {
+  text-decoration: none;
 }
