@@ -1,19 +1,50 @@
-@import url("animations.css");
-
-.articles {
+.title {
   text-align: center;
   padding: 2rem;
 }
 
-.articles h1 {
+.title h1 {
   color: var(--accent-color);
-  font-size: 2em;
-  animation: ColorCycle 60s infinite;
+  margin: 0;
+  font-size: 2.5em;
+  animation: colorCycle 60s infinite;
 }
 
-.articles p {
+.title p {
   font-size: 1.2em;
   margin-top: 1rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.card {
+  background-color: var(--background-color-light);
+  color: var(--text-color);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: var(--accent-color);
+}
+
+.card p {
+  margin: 0.5rem 0;
+  font-size: 1em;
+  color: var(--text-color);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  background-color: var(--tacchino);
 }
 
 header {
@@ -35,8 +66,4 @@ header ul li a {
   color: var(--text-color);
   text-decoration: none;
   font-weight: bold;
-}
-
-header ul li a:hover {
-  animation: colorCycle 10s infinite;
 }
