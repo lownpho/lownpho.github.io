@@ -71,3 +71,15 @@ h1 {
 h1:hover {
   animation: colorCycle 5s infinite;
 }
+
+.btn {
+  color: var(--text-color);
+  font-weight: bold;
+  display: inline-block; /* Ensure proper scaling behavior */
+}
+
+.btn:hover {
+  animation: colorCycle 10s infinite;
+  transform: scale(1.2); /* Uniform scaling to avoid layout shifts */
+  transition: transform 0.1s ease-in-out;
+}
