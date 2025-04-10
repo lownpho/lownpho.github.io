@@ -72,6 +72,12 @@ h1:hover {
   animation: colorCycle 5s infinite;
 }
 
+h2 {
+  font-size: 1.2em;
+  margin: 0;
+  color: var(--accent-color);
+}
+
 .btn {
   color: var(--text-color);
   font-weight: bold;
