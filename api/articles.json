@@ -1,0 +1,20 @@
+[
+  {
+    "filename": "lorem.html",
+    "title": "Lorem Ipsum",
+    "description": "A sample article.",
+    "date": "January 1, 2025"
+  },
+  {
+    "filename": "template.html",
+    "title": "An article template",
+    "description": "A template description.",
+    "date": "February 15, 2025"
+  },
+  {
+    "filename": "eyeball-licking.html",
+    "title": "On licking eyeballs",
+    "description": "Someone died because of it.",
+    "date": "April 7, 2025"
+  }
+]
