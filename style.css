@@ -1,0 +1,40 @@
+:root {
+    --font-family: 'Source Code Pro', monospace, sans-serif;
+    --background-color: #fbfef9;
+    --text-color: #333333;
+    --accent-color: #F2AF29;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.card {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  border: 2px solid var(--accent-color);
+  border-radius: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 2em;
+}
+
+.line {
+  margin-top: 1.1em;
+  font-size: 1.1em;
+}
