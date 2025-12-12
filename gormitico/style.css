@@ -1,0 +1,204 @@
+:root {
+    --font-family: 'Rajdhani', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --fire: #ff5c00;
+    --fire-light: #ff8c42;
+    --fire-dark: #cc4400;
+    --air: #00a8e0;
+    --air-light: #4ab8e6;
+    --air-dark: #0089ba;
+    --water: #0066cc;
+    --water-light: #3399ff;
+    --water-dark: #004c99;
+    --earth: #e8a700;
+    --forest: #228b22;
+    --forest-light: #4caf50;
+    --forest-dark: #176f1b;
+    --bg: #f5f1e8;
+    --text-primary: #1a1410;
+    --text-muted: #8b8680;
+    --gradient-fire: linear-gradient(135deg, #ff5c00 0%, #ff8c42 100%);
+    --gradient-air: linear-gradient(135deg, #00a8e0 0%, #4ab8e6 100%);
+    --gradient-earth: linear-gradient(135deg, #e8a700 0%, #f0b728 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+.body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    padding: 0 12px;
+    min-width: 0;
+    /* needed to prevent horizontal overflow on small screens */
+}
+
+.product-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.split {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.general-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--fire-dark);
+    text-align: center;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--earth);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.image-container {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    min-width: 0;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.options-container {
+    flex: 1;
+    margin-top: 1.5rem;
+    min-width: 0;
+}
+
+.option-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.option-group:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: auto;
+    max-width: 100%;
+}
+
+/* color for label and select text for vasetto option */
+.option-group:nth-child(1) label,
+.option-group:nth-child(1) select {
+    color: var(--forest-dark);
+}
+
+.option-group:nth-child(2) label,
+.option-group:nth-child(2) select {
+    color: var(--air-dark);
+}
+
+.detailed-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.desc-line {
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+.desc-line-1 {
+    color: var(--fire-dark);
+}
+
+.desc-line-2 {
+    color: var(--air-dark);
+}
+
+.desc-line-3 {
+    color: var(--forest-dark);
+}
+
+#scentDisplay {
+    font-weight: 700;
+    color: var(--water-dark);
+}
+
+.buy-button {
+    background: var(--gradient-fire);
+    color: var(--bg);
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    white-space: normal;
+}
+
+.buy-button:hover {
+    background: var(--gradient-air);
+}
+
+.buy-button:active {
+    background: var(--gradient-earth);
+}
+
+@media (max-width: 768px) {
+    .product-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        gap: 1.25rem;
+        max-width: 720px;
+    }
+
+    .split {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .image-container,
+    .options-container,
+    .detailed-info {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    select,
+    .buy-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

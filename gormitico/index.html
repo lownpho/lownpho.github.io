@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prendi un Vasetto</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- <header>
+        <h1>Prendi un Vasetto</h1>
+        <p class="tagline">Candele fatte a mano per far esplodere le tue tempie dal godimento</p>
+    </header> -->
+
+    <main class="product-section">
+
+
+        <div class="split">
+            <div class="image-container">
+                <div class="general-info">
+                    <h2>Candela Gormitica</h2>
+                    <p class="price" id="priceDisplay">€14,99</p>
+                </div>
+                <img id="candle" src="images/candle-fire.png" alt="Immagine di una candela profumata fatta a mano" />
+            </div>
+            <div class="options-container">
+                <div class="option-group">
+                    <label for="vasetto">Prendi un vasetto:</label>
+                    <select id="vasetto">
+                        <option value="s">S</option>
+                        <option value="m">M</option>
+                        <option value="l">L</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label for="gormita">Scegli un gormita da metterci dentro:</label>
+                    <select id="gormita">
+                        <option value="air">Popolo dell'aria</option>
+                        <option value="earth">Popolo della terra</option>
+                        <option value="fire">Popolo del fuoco</option>
+                        <option value="forest">Popolo della foresta</option>
+                    </select>
+                </div>
+
+                <div class="detailed-info">
+                    <p class="desc-line desc-line-1">
+                        Non resisto più al profumo di <span id="scentDisplay">vaniglia</span> questa candela.
+                    </p>
+                    <p class="desc-line desc-line-2">
+                        Ogni candela è realizzata con cera di Luca naturale e oli essenziali puri. Non so che altro
+                        scrivere aiuto. Compra questa candela per favore. Ho famiglia da mantenere.
+                    </p>
+                    <p class="desc-line desc-line-3">
+                        Un prode guerriero gormita dentro ogni vasetto!
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <button class="buy-button" id="addToCartButton">Aggiungi al carrello</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
