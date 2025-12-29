@@ -1,3 +1,5 @@
+const videoExtra = 4.99;
+
 let scentOptions = {};
 let prices = {};
 
@@ -6,15 +8,18 @@ const vasettoRadios = document.querySelectorAll('input[name="vasetto"]');
 const addToCartButton = document.getElementById('addToCartButton');
 const priceDisplay = document.getElementById('priceDisplay');
 const scentDisplay = document.getElementById('scentDisplay');
+const videoCheckbox = document.getElementById('videoCheckbox');
 
 function updateProduct() {
-    const gormita = document.querySelector('input[name="gormita"]:checked').value;
-    const vasetto = document.querySelector('input[name="vasetto"]:checked').value;
+    const gormita = document.querySelector('input[name="gormita"]:checked')?.value;
+    const vasetto = document.querySelector('input[name="vasetto"]:checked')?.value;
 
-    const price = prices[vasetto];
-    priceDisplay.textContent = `€${price.toFixed(2)}`;
+    let basePrice = (prices && prices[vasetto]) ? prices[vasetto] : 0;
+    if (videoCheckbox && videoCheckbox.checked) basePrice += videoExtra;
 
-    scentDisplay.textContent = scentOptions[gormita];
+    priceDisplay.textContent = `€${basePrice.toFixed(2)}`;
+
+    if (gormita) scentDisplay.textContent = scentOptions[gormita];
 }
 
 async function fetchJson(path) {
@@ -90,3 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 vasettoRadios.forEach(radio => radio.addEventListener('change', updateProduct));
 gormitaRadios.forEach(radio => radio.addEventListener('change', updateProduct));
+if (videoCheckbox) videoCheckbox.addEventListener('change', updateProduct);
