@@ -2,7 +2,10 @@ const scentOptions = {
     'air': 'aria fresca',
     'earth': 'sandalo',
     'fire': 'cannella',
-    'forest': 'cocco'
+    'forest': 'cocco',
+    'sea': 'brezza marina',
+    'light': 'fiori solari',
+    'dark': 'ambra notturna'
 }
 
 const prices = {
