@@ -5,10 +5,13 @@ let prices = {};
 
 const gormitaRadios = document.querySelectorAll('input[name="gormita"]');
 const vasettoRadios = document.querySelectorAll('input[name="vasetto"]');
-const addToCartButton = document.getElementById('addToCartButton');
 const priceDisplay = document.getElementById('priceDisplay');
 const scentDisplay = document.getElementById('scentDisplay');
 const videoCheckbox = document.getElementById('videoCheckbox');
+
+function formatEuro(n) {
+    return '€' + n.toFixed(2).replace('.', ',');
+}
 
 function updateProduct() {
     const gormita = document.querySelector('input[name="gormita"]:checked')?.value;
@@ -17,9 +20,9 @@ function updateProduct() {
     let basePrice = (prices && prices[vasetto]) ? prices[vasetto] : 0;
     if (videoCheckbox && videoCheckbox.checked) basePrice += videoExtra;
 
-    priceDisplay.textContent = `€${basePrice.toFixed(2)}`;
+    priceDisplay.textContent = formatEuro(basePrice);
 
-    if (gormita) scentDisplay.textContent = scentOptions[gormita];
+    if (gormita && scentOptions[gormita]) scentDisplay.textContent = scentOptions[gormita];
 }
 
 async function fetchJson(path) {
@@ -89,6 +92,7 @@ function applyAvailability(data) {
     updateProduct();
 }
 
+// event listeners
 document.addEventListener('DOMContentLoaded', () => {
 	loadResourcesAndAvailability();
 });

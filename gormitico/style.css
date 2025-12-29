@@ -39,6 +39,150 @@ body {
     min-width: 0;
 }
 
+.shopping-cart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: max-height 0.25s ease, box-shadow 0.2s ease;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+.shopping-cart.collapsed {
+    max-height: 56px;
+}
+
+.cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    gap: 12px;
+}
+
+.cart-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.cart-badge {
+    background: var(--fire);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
+.cart-toggle-icon {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.cart-toggle-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.cart-items {
+    padding: 8px 12px;
+    display: block;
+    /* allow items area to grow to fill the expanded cart,
+       subtracting an approximate header+footer height */
+    max-height: calc(80vh - 120px);
+    overflow-y: auto;
+    border-top: 1px solid rgba(0,0,0,0.04);
+}
+
+.cart-empty {
+    padding: 12px;
+    color: var(--text-muted);
+}
+.cart-empty.show { display: block; }
+.cart-empty { display: none; }
+
+.cart-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    gap: 10px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+    background: rgba(255,255,255,0.6);
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 6px;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+}
+.cart-item + .cart-item { margin-top: 6px; }
+
+.cart-item:hover { background: rgba(0,0,0,0.02); }
+
+.cart-item-info {
+    flex: 1;
+    min-width: 0;
+}
+.cart-item-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cart-item-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 12px;
+}
+.cart-item-price {
+    font-weight: 700;
+    color: var(--earth);
+    white-space: nowrap;
+}
+.cart-item-remove {
+    background: transparent;
+    border: none;
+    color: #7a6f6a;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+}
+.cart-item-remove:hover { background: rgba(0,0,0,0.04); }
+
+.cart-video-tag {
+    font-size: 0.75rem;
+    background: var(--fire);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 999px;
+    margin-left: 6px;
+}
+
+.shopping-cart.collapsed .cart-items,
+.shopping-cart.collapsed .cart-footer {
+    display: none;
+}
+
 .product-section {
     display: flex;
     flex-direction: column;
@@ -298,7 +442,47 @@ select {
     height: 18px;
 }
 
+.cart-label-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+.cart-icon {
+    display: inline-block;
+    color: var(--text-primary);
+    opacity: 0.95;
+}
+
+.checkout-btn {
+    background: var(--gradient-fire);
+    color: var(--bg);
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+.checkout-btn:hover {
+    background: var(--gradient-air);
+}
+.checkout-btn:active {
+    background: var(--gradient-earth);
+}
+
+.cart-footer .cart-summary { font-weight: 700; }
+.cart-footer .checkout-btn { margin-left: 12px; }
+
 @media (max-width: 768px) {
+    .shopping-cart {
+        max-height: 60vh;
+    }
+    .cart-items {
+        max-height: calc(60vh - 120px);
+    }
+
     .product-section {
         flex-direction: column;
         align-items: center;
