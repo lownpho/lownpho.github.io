@@ -28,27 +28,48 @@
             </div>
             <div class="options-container">
                 <div class="option-group">
-                    <label for="vasetto">Prendi un vasetto:</label>
-                    <select id="vasetto">
-                        <option value="s">S</option>
-                        <option value="m">M</option>
-                        <option value="l">L</option>
-                    </select>
+                    <label>Prendi un vasetto:</label>
+                    <div class="cards-container vasetto-cards">
+                        <label class="card-label">
+                            <input type="radio" name="vasetto" value="s" checked />
+                            <span class="card-text">S</span>
+                        </label>
+                        <label class="card-label">
+                            <input type="radio" name="vasetto" value="m" />
+                            <span class="card-text">M</span>
+                        </label>
+                        <label class="card-label">
+                            <input type="radio" name="vasetto" value="l" />
+                            <span class="card-text">L</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="option-group">
-                    <label for="gormita">Scegli un gormita da metterci dentro:</label>
-                    <select id="gormita">
-                        <option value="air">Popolo dell'aria</option>
-                        <option value="earth">Popolo della terra</option>
-                        <option value="fire">Popolo del fuoco</option>
-                        <option value="forest">Popolo della foresta</option>
-                    </select>
+                    <label>Scegli un gormita da metterci dentro:</label>
+                    <div class="cards-container gormita-cards">
+                        <label class="card-label">
+                            <input type="radio" name="gormita" value="air" checked />
+                            <span class="card-text">Popolo dell'aria</span>
+                        </label>
+                        <label class="card-label">
+                            <input type="radio" name="gormita" value="earth" />
+                            <span class="card-text">Popolo della terra</span>
+                        </label>
+                        <label class="card-label">
+                            <input type="radio" name="gormita" value="fire" />
+                            <span class="card-text">Popolo del fuoco</span>
+                        </label>
+                        <label class="card-label">
+                            <input type="radio" name="gormita" value="forest" />
+                            <span class="card-text">Popolo della foresta</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="detailed-info">
                     <p class="desc-line desc-line-1">
-                        Non resisto più al profumo di <span id="scentDisplay">vaniglia</span> questa candela.
+                        Non resisto più al profumo di <span id="scentDisplay">aria fresca</span> questa candela.
                     </p>
                     <p class="desc-line desc-line-2">
                         Ogni candela è realizzata con cera di Luca naturale e oli essenziali puri. Non so che altro
@@ -59,10 +80,11 @@
                     </p>
 
                 </div>
+
+                <button class="buy-button" id="addToCartButton">Aggiungi al carrello</button>
             </div>
         </div>
 
-        <button class="buy-button" id="addToCartButton">Aggiungi al carrello</button>
     </main>
 
     <script src="script.js"></script>

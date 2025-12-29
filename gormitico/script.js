@@ -11,27 +11,25 @@ const prices = {
     'l': 16.99
 }
 
-const gormitaSelect = document.getElementById('gormita');
-const vasettoSelect = document.getElementById('vasetto');
+const gormitaRadios = document.querySelectorAll('input[name="gormita"]');
+const vasettoRadios = document.querySelectorAll('input[name="vasetto"]');
 const addToCartButton = document.getElementById('addToCartButton');
 const priceDisplay = document.getElementById('priceDisplay');
 const scentDisplay = document.getElementById('scentDisplay');
 
 function updateProduct() {
-    const gormita = gormitaSelect.value;
-    const vasetto = vasettoSelect.value;
+    const gormita = document.querySelector('input[name="gormita"]:checked').value;
+    const vasetto = document.querySelector('input[name="vasetto"]:checked').value;
 
     const price = prices[vasetto];
     priceDisplay.textContent = `€${price.toFixed(2)}`;
 
-    console.log(gormita);
     scentDisplay.textContent = scentOptions[gormita];
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     updateProduct();
 });
 
-vasettoSelect.addEventListener('change', updateProduct);
-gormitaSelect.addEventListener('change', updateProduct);
+vasettoRadios.forEach(radio => radio.addEventListener('change', updateProduct));
+gormitaRadios.forEach(radio => radio.addEventListener('change', updateProduct));
