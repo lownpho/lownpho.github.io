@@ -190,42 +190,99 @@ select {
     min-height: 44px;
 }
 
-/* vasetto (size) styling */
 .vasetto-cards .card-label .card-text {
     color: var(--forest-dark);
     border-color: var(--forest-dark);
 }
 
-.vasetto-cards .card-label input[type="radio"]:checked + .card-text {
+.vasetto-cards .card-label input[type="radio"]:checked+.card-text {
     background-color: var(--forest-dark);
     color: white;
 }
 
-/* gormita (type) styling - per faction colors */
-.gormita-cards .g-air .card-text { color: var(--air-dark); border-color: var(--air-dark); }
-.gormita-cards .g-air input[type="radio"]:checked + .card-text { background-color: var(--air-dark); color: white; }
+.gormita-cards .g-air .card-text {
+    color: var(--air-dark);
+    border-color: var(--air-dark);
+}
 
-.gormita-cards .g-earth .card-text { color: var(--earth-dark); border-color: var(--earth-dark); }
-.gormita-cards .g-earth input[type="radio"]:checked + .card-text { background-color: var(--earth-dark); color: white; }
+.gormita-cards .g-air input[type="radio"]:checked+.card-text {
+    background-color: var(--air-dark);
+    color: white;
+}
 
-.gormita-cards .g-forest .card-text { color: var(--forest-dark); border-color: var(--forest-dark); }
-.gormita-cards .g-forest input[type="radio"]:checked + .card-text { background-color: var(--forest-dark); color: white; }
+.gormita-cards .g-earth .card-text {
+    color: var(--earth-dark);
+    border-color: var(--earth-dark);
+}
 
-.gormita-cards .g-sea .card-text { color: var(--sea); border-color: var(--sea); }
-.gormita-cards .g-sea input[type="radio"]:checked + .card-text { background-color: var(--sea); color: white; }
+.gormita-cards .g-earth input[type="radio"]:checked+.card-text {
+    background-color: var(--earth-dark);
+    color: white;
+}
 
-.gormita-cards .g-fire .card-text { color: var(--fire-dark); border-color: var(--fire-dark); }
-.gormita-cards .g-fire input[type="radio"]:checked + .card-text { background-color: var(--fire-dark); color: white; }
+.gormita-cards .g-forest .card-text {
+    color: var(--forest-dark);
+    border-color: var(--forest-dark);
+}
 
-.gormita-cards .g-light .card-text { color: var(--light-dark); border-color: var(--light-dark); }
-.gormita-cards .g-light input[type="radio"]:checked + .card-text { background-color: var(--light-dark); color: #1a1410; }
+.gormita-cards .g-forest input[type="radio"]:checked+.card-text {
+    background-color: var(--forest-dark);
+    color: white;
+}
 
-.gormita-cards .g-dark .card-text { color: var(--dark-dark); border-color: var(--dark-dark); }
-.gormita-cards .g-dark input[type="radio"]:checked + .card-text { background-color: var(--dark-dark); color: white; }
+.gormita-cards .g-sea .card-text {
+    color: var(--sea);
+    border-color: var(--sea);
+}
+
+.gormita-cards .g-sea input[type="radio"]:checked+.card-text {
+    background-color: var(--sea);
+    color: white;
+}
+
+.gormita-cards .g-fire .card-text {
+    color: var(--fire-dark);
+    border-color: var(--fire-dark);
+}
+
+.gormita-cards .g-fire input[type="radio"]:checked+.card-text {
+    background-color: var(--fire-dark);
+    color: white;
+}
+
+.gormita-cards .g-light .card-text {
+    color: var(--light-dark);
+    border-color: var(--light-dark);
+}
+
+.gormita-cards .g-light input[type="radio"]:checked+.card-text {
+    background-color: var(--light-dark);
+    color: #1a1410;
+}
+
+.gormita-cards .g-dark .card-text {
+    color: var(--dark-dark);
+    border-color: var(--dark-dark);
+}
+
+.gormita-cards .g-dark input[type="radio"]:checked+.card-text {
+    background-color: var(--dark-dark);
+    color: white;
+}
 
 .card-label:hover .card-text {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-label input[type="radio"]:disabled+.card-text,
+.card-label .card-text.disabled {
+    opacity: 0.45;
+    filter: grayscale(80%);
+    cursor: default;
+    pointer-events: none;
+    box-shadow: none;
+    transform: none;
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,16 @@
+{
+  "vasetti": {
+    "s": true,
+    "m": false,
+    "l": true
+  },
+  "popoli": {
+    "earth": true,
+    "forest": false,
+    "sea": true,
+    "air": true,
+    "fire": true,
+    "light": false,
+    "dark": true
+  }
+}
