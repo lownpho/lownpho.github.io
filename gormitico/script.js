@@ -26,28 +26,28 @@ function updateProduct() {
 }
 
 async function fetchJson(path) {
-	try {
-		const res = await fetch(path, { cache: 'no-store' });
-		if (!res.ok) throw new Error('fetch failed ' + path);
-		return await res.json();
-	} catch (e) {
-		console.warn('Could not load', path, e);
-		return null;
-	}
+    try {
+        const res = await fetch(path, { cache: 'no-store' });
+        if (!res.ok) throw new Error('fetch failed ' + path);
+        return await res.json();
+    } catch (e) {
+        console.warn('Could not load', path, e);
+        return null;
+    }
 }
 
 async function loadResourcesAndAvailability() {
-	const [avail, scents, priceData] = await Promise.all([
-		fetchJson('availability.json'),
-		fetchJson('scents.json'),
-		fetchJson('prices.json')
-	]);
+    const [avail, scents, priceData] = await Promise.all([
+        fetchJson('availability.json'),
+        fetchJson('scents.json'),
+        fetchJson('prices.json')
+    ]);
 
-	if (scents) scentOptions = scents;
-	if (priceData) prices = priceData;
+    if (scents) scentOptions = scents;
+    if (priceData) prices = priceData;
 
-	if (avail) applyAvailability(avail);
-	else updateProduct();
+    if (avail) applyAvailability(avail);
+    else updateProduct();
 }
 
 function applyAvailability(data) {
@@ -94,7 +94,7 @@ function applyAvailability(data) {
 
 // event listeners
 document.addEventListener('DOMContentLoaded', () => {
-	loadResourcesAndAvailability();
+    loadResourcesAndAvailability();
 });
 
 vasettoRadios.forEach(radio => radio.addEventListener('change', updateProduct));

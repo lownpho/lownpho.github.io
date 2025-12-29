@@ -10,7 +10,7 @@ const cartEmptyEl = document.getElementById('cartEmpty');
 const addToCartButton = document.getElementById('addToCartButton');
 const checkoutBtn = document.getElementById('checkoutBtn');
 
-function capitalize(s){ if(!s) return s; return s.charAt(0).toUpperCase()+s.slice(1); }
+function capitalize(s) { if (!s) return s; return s.charAt(0).toUpperCase() + s.slice(1); }
 
 function renderCart() {
     if (!cartItemsEl) return;
@@ -27,7 +27,7 @@ function renderCart() {
         itemEl.className = 'cart-item';
         itemEl.innerHTML = `
             <div class="cart-item-info">
-                <div class="cart-item-title">Candela Gormitica (${item.vasetto.toUpperCase()}, ${capitalize(item.gormita)}) ${item.video?'<span class="cart-video-tag">+video</span>':''}</div>
+                <div class="cart-item-title">Candela Gormitica (${item.vasetto.toUpperCase()}, ${capitalize(item.gormita)}) ${item.video ? '<span class="cart-video-tag">+video</span>' : ''}</div>
                 <div class="cart-item-meta">${item.scent}</div>
             </div>
             <div class="cart-item-actions">
@@ -84,7 +84,7 @@ function addCurrentProductToCart() {
 }
 
 function removeCartItem(idx) {
-    if (idx >=0 && idx < cart.length) {
+    if (idx >= 0 && idx < cart.length) {
         cart.splice(idx, 1);
         renderCart();
     }
