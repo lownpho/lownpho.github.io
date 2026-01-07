@@ -1,34 +1,47 @@
+// ============================================================================
+// Product Configuration & Constants
+// ============================================================================
 const videoExtra = 4.99;
 
+// ============================================================================
+// State Management (GLOBAL - shared with cart.js)
+// ============================================================================
 let scentOptions = {};
 let prices = {};
 
-const gormitaRadios = document.querySelectorAll('input[name="gormita"]');
-const vasettoRadios = document.querySelectorAll('input[name="vasetto"]');
-const priceDisplay = document.getElementById('priceDisplay');
-const scentDisplay = document.getElementById('scentDisplay');
-const videoCheckbox = document.getElementById('videoCheckbox');
+// ============================================================================
+// DOM Elements (cached references - will be populated on load)
+// ============================================================================
+const dom = {};
 
+// ============================================================================
+// Utilities
+// ============================================================================
 function formatEuro(n) {
     return '€' + n.toFixed(2).replace('.', ',');
 }
 
+// ============================================================================
+// Product Updates
+// ============================================================================
 function updateProduct() {
     const gormita = document.querySelector('input[name="gormita"]:checked')?.value;
     const vasetto = document.querySelector('input[name="vasetto"]:checked')?.value;
 
-    let basePrice = (prices && prices[vasetto]) ? prices[vasetto] : 0;
-    if (videoCheckbox && videoCheckbox.checked) basePrice += videoExtra;
+    let basePrice = prices[vasetto] ?? 0;
+    if (dom.videoCheckbox?.checked) basePrice += videoExtra;
 
-    priceDisplay.textContent = formatEuro(basePrice);
-
-    if (gormita && scentOptions[gormita]) scentDisplay.textContent = scentOptions[gormita];
+    if (dom.priceDisplay) dom.priceDisplay.textContent = formatEuro(basePrice);
+    if (dom.scentDisplay) dom.scentDisplay.textContent = scentOptions[gormita] ?? '';
 }
 
+// ============================================================================
+// Data Loading
+// ============================================================================
 async function fetchJson(path) {
     try {
         const res = await fetch(path, { cache: 'no-store' });
-        if (!res.ok) throw new Error('fetch failed ' + path);
+        if (!res.ok) throw new Error(`fetch failed ${path}`);
         return await res.json();
     } catch (e) {
         console.warn('Could not load', path, e);
@@ -45,58 +58,70 @@ async function loadResourcesAndAvailability() {
 
     if (scents) scentOptions = scents;
     if (priceData) prices = priceData;
-
     if (avail) applyAvailability(avail);
-    else updateProduct();
-}
-
-function applyAvailability(data) {
-    vasettoRadios.forEach(radio => {
-        const ok = data.vasetti && data.vasetti[radio.value];
-        radio.disabled = !ok;
-        const label = radio.closest('.card-label');
-        const text = label && label.querySelector('.card-text');
-        if (text) {
-            text.classList.toggle('disabled', !ok);
-            if (!ok) text.setAttribute('title', 'Non disponibile');
-            else text.removeAttribute('title');
-        }
-    });
-
-    gormitaRadios.forEach(radio => {
-        const ok = data.popoli && data.popoli[radio.value];
-        radio.disabled = !ok;
-        const label = radio.closest('.card-label');
-        const text = label && label.querySelector('.card-text');
-        if (text) {
-            text.classList.toggle('disabled', !ok);
-            if (!ok) text.setAttribute('title', 'Non disponibile');
-            else text.removeAttribute('title');
-        }
-    });
-
-    const selectedV = document.querySelector('input[name="vasetto"]:checked');
-    if (!selectedV || selectedV.disabled) {
-        const firstAvailable = Array.from(vasettoRadios).find(r => !r.disabled);
-        if (firstAvailable) firstAvailable.checked = true;
-        else if (selectedV) selectedV.checked = false;
-    }
-
-    const selectedG = document.querySelector('input[name="gormita"]:checked');
-    if (!selectedG || selectedG.disabled) {
-        const firstAvailable = Array.from(gormitaRadios).find(r => !r.disabled);
-        if (firstAvailable) firstAvailable.checked = true;
-        else if (selectedG) selectedG.checked = false;
-    }
-
+    
     updateProduct();
 }
 
-// event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    loadResourcesAndAvailability();
-});
+// ============================================================================
+// Availability Logic
+// ============================================================================
+function selectFirstAvailable(radioGroup) {
+    const selected = document.querySelector(`input[name="${radioGroup}"]:checked`);
+    const firstAvailable = Array.from(
+        document.querySelectorAll(`input[name="${radioGroup}"]`)
+    ).find(r => !r.disabled);
 
-vasettoRadios.forEach(radio => radio.addEventListener('change', updateProduct));
-gormitaRadios.forEach(radio => radio.addEventListener('change', updateProduct));
-if (videoCheckbox) videoCheckbox.addEventListener('change', updateProduct);
+    if (firstAvailable && (!selected || selected.disabled)) {
+        firstAvailable.checked = true;
+    } else if (selected?.disabled) {
+        selected.checked = false;
+    }
+}
+
+function applyAvailabilityToGroup(radioGroup, availabilityKey, data) {
+    document.querySelectorAll(`input[name="${radioGroup}"]`).forEach(radio => {
+        const isAvailable = data[availabilityKey]?.[radio.value] ?? false;
+        radio.disabled = !isAvailable;
+
+        const textEl = radio.closest('.card-label')?.querySelector('.card-text');
+        if (textEl) {
+            textEl.classList.toggle('disabled', !isAvailable);
+            if (!isAvailable) {
+                textEl.setAttribute('title', 'Non disponibile');
+            } else {
+                textEl.removeAttribute('title');
+            }
+        }
+    });
+}
+
+function applyAvailability(data) {
+    applyAvailabilityToGroup('vasetto', 'vasetti', data);
+    applyAvailabilityToGroup('gormita', 'popoli', data);
+    
+    selectFirstAvailable('vasetto');
+    selectFirstAvailable('gormita');
+    
+    updateProduct();
+}
+
+// ============================================================================
+// Event Initialization
+// ============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Cache DOM elements AFTER they exist
+    dom.gormitaRadios = document.querySelectorAll('input[name="gormita"]');
+    dom.vasettoRadios = document.querySelectorAll('input[name="vasetto"]');
+    dom.priceDisplay = document.getElementById('priceDisplay');
+    dom.scentDisplay = document.getElementById('scentDisplay');
+    dom.videoCheckbox = document.getElementById('videoCheckbox');
+
+    // Load data and setup
+    loadResourcesAndAvailability();
+
+    // Attach event listeners
+    dom.vasettoRadios.forEach(radio => radio.addEventListener('change', updateProduct));
+    dom.gormitaRadios.forEach(radio => radio.addEventListener('change', updateProduct));
+    dom.videoCheckbox?.addEventListener('change', updateProduct);
+});
