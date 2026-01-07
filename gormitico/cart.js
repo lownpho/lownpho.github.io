@@ -12,6 +12,21 @@ const checkoutBtn = document.getElementById('checkoutBtn');
 
 function capitalize(s) { if (!s) return s; return s.charAt(0).toUpperCase() + s.slice(1); }
 
+const gormitaNames = {
+    earth: 'terra',
+    air: 'aria',
+    forest: 'foresta',
+    fire: 'fuoco',
+    sea: 'mare',
+    light: 'luce',
+    dark: 'oscurità',
+};
+
+function getGormitaDisplayName(key) {
+    if (!key) return key;
+    return gormitaNames[key] ? capitalize(gormitaNames[key]) : capitalize(key);
+}
+
 function renderCart() {
     if (!cartItemsEl) return;
     cartItemsEl.innerHTML = '';
