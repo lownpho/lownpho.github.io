@@ -129,6 +129,7 @@ body {
 
 .nav-block--cyan .nav-block-initial { color: var(--cyan); }
 .nav-block--magenta .nav-block-initial { color: var(--magenta); }
+.nav-block--yellow .nav-block-initial { color: var(--yellow); }
 
 .nav-block-arrow {
   width: 14px;
@@ -152,6 +153,7 @@ body {
 
 .nav-block--cyan:hover .nav-block-rest { color: var(--cyan); }
 .nav-block--magenta:hover .nav-block-rest { color: var(--magenta); }
+.nav-block--yellow:hover .nav-block-rest { color: var(--yellow); }
 
 .nav-block:hover .nav-block-arrow {
   transform: rotate(45deg) translateX(4px) translateY(-4px);
@@ -449,6 +451,44 @@ body {
   font-weight: 350;
   font-style: italic;
   color: var(--grey);
+}
+
+.github-link {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: var(--black);
+  border-bottom: 2px solid var(--black);
+  padding-bottom: 0.15rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.github-link:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+/* ---- About prose ---- */
+
+.about-prose {
+  animation: revealUp 0.7s var(--ease-smooth) 0.2s both;
+}
+
+.about-prose p {
+  font-family: var(--font-accent);
+  font-size: 1rem;
+  font-weight: 350;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.about-prose p:last-child {
+  margin-bottom: 0;
 }
 
 /* ---- Animations ---- */
