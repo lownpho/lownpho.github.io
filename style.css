@@ -1,40 +1,226 @@
+/* ============================================
+   lownpho — personal site
+   Helvetica + Fraunces | Bold minimalism
+   ============================================ */
+
 :root {
-    --font-family: 'Source Code Pro', monospace, sans-serif;
-    --background-color: #fbfef9;
-    --text-color: #333333;
-    --accent-color: #F2AF29;
+  --white: #ffffff;
+  --black: #1a1a1a;
+  --grey: #999;
+  --cyan: #00AEEF;
+  --magenta: #EC008C;
+  --yellow: #FFD700;
+  --rule-weight: 3px;
+  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-accent: 'Fraunces', Georgia, serif;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
 }
 
 body {
-  margin: 0;
-  font-family: var(--font-family);
-  background-color: var(--background-color);
-  color: var(--text-color);
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.card {
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  border: 2px solid var(--accent-color);
-  border-radius: 20px;
-  text-align: center;
-  background-color: #fff;
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+/* ---- Color utilities ---- */
+
+.c-cyan { color: var(--cyan); }
+.c-magenta { color: var(--magenta); }
+.c-yellow { color: var(--yellow); }
+
+
+/* =============================================
+   LANDING PAGE
+   ============================================= */
+
+.landing {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
 }
 
-h1 {
-  font-size: 2em;
-  margin-bottom: 2em;
+.landing-header {
+  margin-bottom: 0.5rem;
+  animation: revealUp 0.7s var(--ease-smooth) both;
 }
 
-.line {
-  margin-top: 1.1em;
-  font-size: 1.1em;
+.landing-name {
+  font-family: var(--font-body);
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin-bottom: 1.2rem;
+}
+
+.landing-tagline {
+  font-family: var(--font-accent);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 28ch;
+}
+
+.landing-tagline em {
+  font-style: italic;
+  color: var(--magenta);
+}
+
+/* ---- Bold nav blocks ---- */
+
+.landing-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 3rem;
+  animation: revealUp 0.7s var(--ease-smooth) 0.2s both;
+}
+
+.nav-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 1.2rem;
+  text-decoration: none;
+  color: var(--black);
+  border-bottom: var(--rule-weight) solid var(--black);
+  transition:
+    padding-left 0.4s var(--ease-spring),
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+.nav-block:first-child {
+  border-top: var(--rule-weight) solid var(--black);
+}
+
+.nav-block-label {
+  font-family: var(--font-body);
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.nav-block-initial {
+  transition: color 0.35s ease;
+}
+
+.nav-block-rest {
+  transition: color 0.35s ease;
+}
+
+.nav-block--cyan .nav-block-initial { color: var(--cyan); }
+.nav-block--magenta .nav-block-initial { color: var(--magenta); }
+
+.nav-block-arrow {
+  width: 14px;
+  height: 14px;
+  border-top: var(--rule-weight) solid;
+  border-right: var(--rule-weight) solid;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  transition: transform 0.4s var(--ease-spring), border-color 0.35s ease;
+}
+
+.nav-block:hover {
+  padding-left: 2rem;
+  background: var(--black);
+  color: var(--white);
+}
+
+.nav-block:hover .nav-block-initial {
+  color: var(--white);
+}
+
+.nav-block--cyan:hover .nav-block-rest { color: var(--cyan); }
+.nav-block--magenta:hover .nav-block-rest { color: var(--magenta); }
+
+.nav-block:hover .nav-block-arrow {
+  transform: rotate(45deg) translateX(4px) translateY(-4px);
+}
+
+/* Arrow color variants */
+.arrow--cyan  { border-color: var(--cyan); }
+.arrow--magenta { border-color: var(--magenta); }
+.arrow--yellow { border-color: var(--yellow); }
+
+/* ---- Landing footer ---- */
+
+.landing-footer {
+  margin-top: 4rem;
+  animation: revealUp 0.7s var(--ease-smooth) 0.35s both;
+}
+
+/* ---- Footer ---- */
+
+.footer-text {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  font-weight: 350;
+  color: var(--grey);
+}
+
+/* ---- Animations ---- */
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 480px) {
+  html { font-size: 16px; }
+
+  .landing {
+    padding: 2rem 1.25rem;
+  }
+
+  .landing-name {
+    font-size: 3.2rem;
+  }
+
+  .nav-block-label {
+    font-size: 1.6rem;
+  }
+
+  .nav-block-arrow {
+    width: 11px;
+    height: 11px;
+  }
 }

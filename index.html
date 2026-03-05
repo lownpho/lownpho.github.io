@@ -6,26 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>lownpho</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <main class="card" aria-label="Under construction notice">
-    <h1>Under Construction</h1>
-    <p class="line">
-      I promise this will be a <strong>real website</strong> soon.
-    </p>
-    <p class="line">
-      For now, please enjoy this perfectly curated
-      <strong>empty space</strong>.
-    </p>
-    <p class="line">
-      Progress bar: 0% complete<span class="dot">.</span>
-    </p>
-    <div class="footer">
-      If you refresh the page, it still will not be done.
-    </div>
-  </main>
+
+  <div class="landing">
+
+    <header class="landing-header">
+      <h1 class="landing-name">l<span class="c-cyan">o</span><span class="c-yellow">w</span>nph<span class="c-magenta">o</span></h1>
+      <p class="landing-tagline">Hey look! I have a website too! <em>Now what?</em> A lot of placeholder text of course.</p>
+    </header>
+
+    <nav class="landing-nav">
+      <a href="projects/" class="nav-block nav-block--cyan">
+        <span class="nav-block-label"><span class="nav-block-initial">P</span><span class="nav-block-rest">rojects</span></span>
+        <span class="nav-block-arrow arrow--cyan"></span>
+      </a>
+      <a href="writing/" class="nav-block nav-block--magenta">
+        <span class="nav-block-label"><span class="nav-block-initial">W</span><span class="nav-block-rest">riting</span></span>
+        <span class="nav-block-arrow arrow--magenta"></span>
+      </a>
+    </nav>
+
+    <footer class="landing-footer">
+      <p class="footer-text">That's all for now.</p>
+    </footer>
+
+  </div>
+
 </body>
 
 </html>
