@@ -169,6 +169,273 @@ body {
   animation: revealUp 0.7s var(--ease-smooth) 0.35s both;
 }
 
+/* =============================================
+   SUBPAGES (projects, writing)
+   ============================================= */
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ---- Back nav ---- */
+
+.page-nav {
+  margin-bottom: 3rem;
+  animation: revealUp 0.5s var(--ease-smooth) both;
+}
+
+.back-link {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--black);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    padding-left 0.4s var(--ease-spring);
+}
+
+.back-logo > span {
+  letter-spacing: 0.1em;
+}
+
+.back-link:hover {
+  background: var(--black);
+  color: var(--white);
+  padding-left: 1rem;
+}
+
+.back-link:hover .c-cyan,
+.back-link:hover .c-magenta,
+.back-link:hover .c-yellow {
+  color: var(--white);
+}
+
+.back-link:hover .c-hover-cyan { color: var(--cyan); }
+.back-link:hover .c-hover-magenta { color: var(--magenta); }
+.back-link:hover .c-hover-yellow { color: var(--yellow); }
+
+.back-logo > span {
+  transition: color 0.35s ease;
+}
+
+.back-arrow {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s ease;
+}
+
+.back-link:hover .back-arrow {
+  transform: rotate(45deg) translateX(-3px) translateY(3px);
+  border-color: var(--white);
+}
+
+/* ---- Page header ---- */
+
+.page-header {
+  margin-bottom: 0.5rem;
+  animation: revealUp 0.6s var(--ease-smooth) 0.05s both;
+}
+
+.page-title {
+  font-family: var(--font-body);
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+/* =============================================
+   SHARED
+   ============================================= */
+
+/* ---- Dividers ---- */
+
+.divider {
+  border: none;
+  border-top: var(--rule-weight) solid var(--black);
+  margin: 2.5rem 0;
+  animation: scaleIn 0.6s var(--ease-smooth) 0.15s both;
+}
+
+/* ---- Card grid ---- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  animation: revealUp 0.7s var(--ease-smooth) 0.25s both;
+}
+
+/* ---- Cards ---- */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.8rem 1.6rem;
+  border: var(--rule-weight) solid var(--black);
+  text-decoration: none;
+  color: var(--black);
+  background: var(--white);
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-smooth),
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 0 0 var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+.card-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background: var(--black);
+  transition: width 0.5s var(--ease-spring);
+}
+
+.card:hover .card-border {
+  width: 100%;
+  background: var(--magenta);
+}
+
+.card-tag {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 2px solid var(--black);
+  padding: 0.2rem 0.55rem;
+  align-self: flex-start;
+  margin-bottom: 1.2rem;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover .card-tag {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+.card-title {
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+  transition: color 0.35s ease;
+}
+
+.card:hover .card-title {
+  color: var(--magenta);
+}
+
+.card-desc {
+  font-family: var(--font-accent);
+  font-size: 0.88rem;
+  font-weight: 350;
+  line-height: 1.6;
+  color: var(--black);
+  flex-grow: 1;
+  transition: color 0.35s ease;
+}
+
+.card:hover .card-desc {
+  color: var(--white);
+}
+
+.card-arrow {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: var(--rule-weight) solid;
+  border-right: var(--rule-weight) solid;
+  transform: rotate(45deg);
+  margin-top: auto;
+  padding-top: 1rem;
+  align-self: flex-end;
+  transition:
+    transform 0.4s var(--ease-spring),
+    border-color 0.35s ease;
+}
+
+.card:hover .card-arrow {
+  transform: rotate(45deg) translateX(4px) translateY(-4px);
+}
+
+/* ---- "Coming soon" variant ---- */
+
+.card--soon {
+  border-style: dashed;
+  cursor: default;
+}
+
+.card--soon:hover {
+  transform: translateY(-3px) rotate(-0.5deg);
+  box-shadow: 0 6px 0 0 var(--grey);
+  background: var(--grey);
+  color: var(--white);
+}
+
+.card--soon .card-border {
+  background: var(--grey);
+}
+
+.card--soon .card-tag {
+  border-color: var(--grey);
+  color: var(--grey);
+}
+
+.card--soon:hover .card-tag {
+  background: var(--white);
+  color: var(--grey);
+  border-color: var(--white);
+}
+
+.card--soon .card-title {
+  color: var(--grey);
+  transition: color 0.35s ease;
+}
+
+.card--soon:hover .card-title {
+  color: var(--white);
+}
+
+.card--soon .card-desc {
+  color: var(--grey);
+}
+
+.card--soon:hover .card-desc {
+  color: var(--white);
+}
+
+.card--soon:hover .card-border {
+  background: var(--white);
+}
+
 /* ---- Footer ---- */
 
 .footer-text {
@@ -222,5 +489,17 @@ body {
   .nav-block-arrow {
     width: 11px;
     height: 11px;
+  }
+
+  .page {
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .page-title {
+    font-size: 2.6rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
   }
 }
