@@ -438,10 +438,16 @@ body {
 
 /* ---- Footer ---- */
 
+.page-footer {
+  margin-top: 3rem;
+  animation: revealUp 0.7s var(--ease-smooth) 0.35s both;
+}
+
 .footer-text {
   font-family: var(--font-accent);
   font-size: 0.85rem;
   font-weight: 350;
+  font-style: italic;
   color: var(--grey);
 }
 
