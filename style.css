@@ -491,6 +491,23 @@ body {
   margin-bottom: 0;
 }
 
+/* ---- Game embed ---- */
+
+.game-embed {
+  margin-top: 2.5rem;
+  border: var(--rule-weight) solid var(--black);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  animation: revealUp 0.7s var(--ease-smooth) 0.3s both;
+}
+
+.game-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* ---- Animations ---- */
 
 @keyframes revealUp {

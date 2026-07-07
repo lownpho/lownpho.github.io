@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mages</title>
+  <link rel="icon" type="image/png" href="game_export/game.icon.png" />
+  <link rel="apple-touch-icon" href="game_export/game.apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="mages.css" />
+</head>
+
+<body class="mages">
+
+  <div class="wrap">
+
+    <!-- ===== Top HUD bar ===== -->
+    <nav class="hud-bar">
+      <a href="../" class="back">
+        <svg class="pix" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true">
+          <rect x="4" y="1" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/>
+          <rect x="2" y="3" width="1" height="2"/><rect x="3" y="5" width="1" height="1"/>
+          <rect x="4" y="6" width="1" height="1"/><rect x="2" y="3" width="5" height="2"/>
+        </svg>
+        <span>LOWNPHO</span>
+      </a>
+    </nav>
+
+    <!-- ===== Hero — title flanked by an in-game scene (no box) ===== -->
+    <header class="hero">
+      <div class="hero-scene">
+        <!-- left: the mage + trees, facing the enemies -->
+        <div class="cluster cluster--left" aria-hidden="true">
+          <span class="spr spr-tree" style="--v:1"></span>
+          <span class="spr spr-tree" style="--v:3"></span>
+          <span class="spr spr-player"></span>
+        </div>
+        <h1 class="title"><span class="m">M</span>AGES</h1>
+        <!-- right: enemies + trees -->
+        <div class="cluster cluster--right" aria-hidden="true">
+          <span class="spr spr-mandrake"></span>
+          <span class="spr spr-hopper"></span>
+          <span class="spr spr-tree" style="--v:4"></span>
+          <span class="spr spr-tree" style="--v:2"></span>
+        </div>
+      </div>
+      <p class="tagline">Explore and go pew pew.</p>
+      <div class="hero-actions">
+        <button id="btn-play" class="play-btn" type="button" aria-label="Play Mages">
+          <svg class="pix" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="3" y="2" width="1" height="8"/><rect x="4" y="3" width="1" height="6"/>
+            <rect x="5" y="4" width="1" height="4"/><rect x="6" y="5" width="1" height="2"/>
+          </svg>
+          <span>PLAY</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2 class="panel-title">ABOUT</h2>
+      <div class="prose">
+        <p>An action RPG where you go around keeping track of how many dangerous beasts you've killed. (Yes that's what the skull icon at the bottom is for)</p>
+        <p>There are a few different items and playstyles to try, effectiveness may vary.</p>
+        <p>This draft of the first biome has a few enemies, a sneaky snake and a dreadful boss to add to your bestiary.</p>
+        <p>Good luck, you're gonna need it!</p>
+        <p><br>Oh, and no tutorial because fuck you.</p>
+      </div>
+    </section>
+
+    <!-- ===== Controls ===== -->
+    <section class="panel">
+      <h2 class="panel-title">CONTROLS</h2>
+      <div class="controls">
+        <div class="control">
+          <span class="keys keys--stack">
+            <span class="row"><kbd class="key">W</kbd></span>
+            <span class="row"><kbd class="key">A</kbd><kbd class="key">S</kbd><kbd class="key">D</kbd></span>
+          </span>
+          <span class="label">MOVE</span>
+        </div>
+        <div class="control">
+          <span class="keys">
+            <kbd class="key key--mouse" aria-label="Left mouse button">
+              <svg class="pix" viewBox="0 0 9 13" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="3" y="0" width="3" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
+                <rect x="1" y="2" width="1" height="9"/><rect x="7" y="2" width="1" height="9"/>
+                <rect x="2" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="3" y="12" width="3" height="1"/>
+                <rect x="2" y="5" width="5" height="1"/>
+                <rect x="2" y="1" width="2" height="4"/><rect x="4" y="1" width="1" height="4"/>
+              </svg>
+            </kbd>
+          </span>
+          <span class="label">SHOOT</span>
+        </div>
+        <div class="control">
+          <span class="keys">
+            <kbd class="key key--mouse" aria-label="Right mouse button">
+              <svg class="pix" viewBox="0 0 9 13" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="3" y="0" width="3" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
+                <rect x="1" y="2" width="1" height="9"/><rect x="7" y="2" width="1" height="9"/>
+                <rect x="2" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="3" y="12" width="3" height="1"/>
+                <rect x="2" y="5" width="5" height="1"/>
+                <rect x="5" y="1" width="2" height="4"/><rect x="4" y="1" width="1" height="4"/>
+              </svg>
+            </kbd>
+          </span>
+          <span class="label">FOCUS</span>
+        </div>
+        <div class="control">
+          <span class="keys">
+            <kbd class="key key--wide">TAB</kbd><kbd class="key key--wide">SHIFT</kbd><kbd class="key key--wide">CTRL</kbd><kbd class="key key--wide">SPACE</kbd>
+          </span>
+          <span class="label">SPELL SLOTS</span>
+        </div>
+        <div class="control">
+          <span class="keys">
+            <kbd class="key key--drag">DRAG</kbd>
+            <span class="key-or">or</span>
+            <kbd class="key key--mouse" aria-label="Double left click">
+              2×
+              <svg class="pix" viewBox="0 0 9 13" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="3" y="0" width="3" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
+                <rect x="1" y="2" width="1" height="9"/><rect x="7" y="2" width="1" height="9"/>
+                <rect x="2" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="3" y="12" width="3" height="1"/>
+                <rect x="2" y="5" width="5" height="1"/>
+                <rect x="2" y="1" width="2" height="4"/><rect x="4" y="1" width="1" height="4"/>
+              </svg>
+            </kbd>
+          </span>
+          <span class="label">EQUIP ITEM</span>
+        </div>
+        <div class="control">
+          <span class="keys">
+            <kbd class="key key--mouse" aria-label="Scroll wheel">
+              <svg class="pix" viewBox="0 0 9 13" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="3" y="0" width="3" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
+                <rect x="1" y="2" width="1" height="9"/><rect x="7" y="2" width="1" height="9"/>
+                <rect x="2" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="3" y="12" width="3" height="1"/>
+                <rect x="2" y="5" width="5" height="1"/>
+                <rect x="4" y="1" width="1" height="4"/>
+              </svg>
+            </kbd>
+          </span>
+          <span class="label">ZOOM MINIMAP</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Glade scene — real in-game sprites ===== -->
+    <div class="glade" role="img" aria-label="Trees and creatures from the glade">
+      <div class="glade-row">
+        <span class="spr spr-tree" style="--v:2"></span>
+        <span class="spr spr-sproutling"></span>
+        <span class="spr spr-tree" style="--v:0"></span>
+        <span class="spr spr-mandrake"></span>
+        <span class="spr spr-hopper"></span>
+        <span class="spr spr-tree" style="--v:4"></span>
+      </div>
+      <div class="glade-ground"></div>
+    </div>
+
+    <!-- ===== Game stage ===== -->
+    <div id="stage" class="stage frame">
+      <button id="poster" class="poster" type="button" aria-label="Load and play Mages">
+        <span class="play-cta">
+          <svg class="pix" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="3" y="2" width="1" height="8"/><rect x="4" y="3" width="1" height="6"/>
+            <rect x="5" y="4" width="1" height="4"/><rect x="6" y="5" width="1" height="2"/>
+          </svg>
+          PLAY
+        </span>
+      </button>
+    </div>
+    <!-- ===== Footer ===== -->
+    <footer class="foot">
+      <p class="fanfola" id="fanfola"></p>
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      var stage = document.getElementById('stage');
+      var poster = document.getElementById('poster');
+      var heroBtn = document.getElementById('btn-play');
+
+      // No touching this game on a phone.
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Silk/i.test(navigator.userAgent)) {
+        var jab = 'Get a real computer to run this game!';
+
+        heroBtn.disabled = true;
+        heroBtn.classList.add('is-blocked');
+        var heroMsg = document.createElement('p');
+        heroMsg.className = 'mobile-msg';
+        heroMsg.innerHTML = jab;
+        heroBtn.closest('.hero-actions').insertAdjacentElement('afterend', heroMsg);
+
+        poster.classList.add('is-blocked');
+        poster.setAttribute('aria-disabled', 'true');
+        poster.innerHTML = '<span class="mobile-msg">' + jab + '</span>';
+        return;
+      }
+
+      var loaded = false;
+
+      function loadGame() {
+        if (loaded) return;
+        loaded = true;
+        var iframe = document.createElement('iframe');
+        iframe.src = 'game_export/game.html';
+        iframe.title = 'Mages';
+        iframe.allow = 'autoplay; fullscreen; gamepad';
+        iframe.setAttribute('allowfullscreen', '');
+        stage.appendChild(iframe);
+        poster.classList.add('is-hidden');
+      }
+
+      poster.addEventListener('click', loadGame);
+
+      heroBtn.addEventListener('click', function () {
+        loadGame();
+        stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }());
+  </script>
+
+  <!-- Fanfole poem filler for the footer line -->
+  <script data-root="../../" src="../../fanfole.js"></script>
+
+</body>
+
+</html>
