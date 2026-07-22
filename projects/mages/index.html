@@ -62,9 +62,9 @@
     <section class="panel">
       <h2 class="panel-title">ABOUT</h2>
       <div class="prose">
-        <p>An action RPG where you go around keeping track of how many dangerous beasts you've killed. (Yes that's what the skull icon at the bottom is for)</p>
+        <p>You are a mage. With spells. <br>You go around keeping track of how many dangerous beasts you've killed.</p>
         <p>There are a few different items and playstyles to try, effectiveness may vary.</p>
-        <p>This draft of the first biome has a few enemies, a sneaky snake and a dreadful boss to add to your bestiary.</p>
+        <p>This draft of the first biome has a few enemies and two bosses to add to your bestiary.</p>
         <p>Good luck, you're gonna need it!</p>
         <p><br>Oh, and no tutorial because fuck you.</p>
       </div>
@@ -92,11 +92,15 @@
                 <rect x="2" y="1" width="2" height="4"/><rect x="4" y="1" width="1" height="4"/>
               </svg>
             </kbd>
-          </span>
-          <span class="label">SHOOT</span>
-        </div>
-        <div class="control">
-          <span class="keys">
+            <kbd class="key key--mouse" aria-label="Middle mouse button">
+              <svg class="pix" viewBox="0 0 9 13" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="3" y="0" width="3" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
+                <rect x="1" y="2" width="1" height="9"/><rect x="7" y="2" width="1" height="9"/>
+                <rect x="2" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="3" y="12" width="3" height="1"/>
+                <rect x="2" y="5" width="5" height="1"/>
+                <rect x="4" y="1" width="1" height="4"/>
+              </svg>
+            </kbd>
             <kbd class="key key--mouse" aria-label="Right mouse button">
               <svg class="pix" viewBox="0 0 9 13" shape-rendering="crispEdges" aria-hidden="true">
                 <rect x="3" y="0" width="3" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
@@ -107,20 +111,29 @@
               </svg>
             </kbd>
           </span>
-          <span class="label">FOCUS</span>
+          <span class="label">CAST SPELLS</span>
         </div>
         <div class="control">
           <span class="keys">
-            <kbd class="key key--wide">TAB</kbd><kbd class="key key--wide">SHIFT</kbd><kbd class="key key--wide">CTRL</kbd><kbd class="key key--wide">SPACE</kbd>
+            <kbd class="key key--wide">SPACE</kbd>
+            <span class="key-or">or</span>
+            <kbd class="key key--mouse" aria-label="Scroll wheel">
+              <svg class="pix" viewBox="0 0 9 13" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="3" y="0" width="3" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
+                <rect x="1" y="2" width="1" height="9"/><rect x="7" y="2" width="1" height="9"/>
+                <rect x="2" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="3" y="12" width="3" height="1"/>
+                <rect x="2" y="5" width="5" height="1"/>
+                <rect x="4" y="1" width="1" height="4"/>
+              </svg>
+            </kbd>
           </span>
-          <span class="label">SPELL SLOTS</span>
+          <span class="label">SWAP ACTIVE SPELL PAGE</span>
         </div>
         <div class="control">
           <span class="keys">
             <kbd class="key key--drag">DRAG</kbd>
             <span class="key-or">or</span>
             <kbd class="key key--mouse" aria-label="Double left click">
-              2×
               <svg class="pix" viewBox="0 0 9 13" shape-rendering="crispEdges" aria-hidden="true">
                 <rect x="3" y="0" width="3" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/>
                 <rect x="1" y="2" width="1" height="9"/><rect x="7" y="2" width="1" height="9"/>
@@ -147,6 +160,12 @@
           <span class="label">ZOOM MINIMAP</span>
         </div>
       </div>
+    </section>
+
+    <!-- ===== Leaderboard — live from Talo, hidden until entries arrive ===== -->
+    <section class="panel" id="leaderboard" hidden>
+      <h2 class="panel-title">LEADERBOARD</h2>
+      <ol class="board" id="board-rows"></ol>
     </section>
 
     <!-- ===== Glade scene — real in-game sprites ===== -->
@@ -224,6 +243,50 @@
         loadGame();
         stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
+    }());
+  </script>
+
+  <!-- Live leaderboard, straight from the Talo API. The key must be a key with ONLY
+       the read:leaderboards scope — it ships in page source, so it can never be the
+       game client's key. Empty key = section stays hidden. -->
+  <script>
+    (function () {
+      var READ_KEY = '';
+      var BOARD = 'kills';
+      var MAX_ROWS = 10;
+      if (!READ_KEY) return;
+
+      fetch('https://api.trytalo.com/v1/leaderboards/' + BOARD + '/entries?page=0', {
+        headers: {
+          'Authorization': 'Bearer ' + READ_KEY,
+          // Editor/debug builds submit dev-flagged entries; show them while the game
+          // is pre-release. Drop this header once live builds are out.
+          'X-Talo-Include-Dev-Data': '1'
+        }
+      }).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      }).then(function (data) {
+        var entries = (data.entries || []).slice(0, MAX_ROWS);
+        if (!entries.length) return;
+        var rows = document.getElementById('board-rows');
+        entries.forEach(function (e) {
+          // textContent only: names are player-supplied.
+          var li = document.createElement('li');
+          var rank = document.createElement('span');
+          rank.className = 'board-rank';
+          rank.textContent = e.position + 1;
+          var name = document.createElement('span');
+          name.className = 'board-name';
+          name.textContent = e.playerAlias.displayName;
+          var score = document.createElement('span');
+          score.className = 'board-score';
+          score.textContent = Math.round(e.score);
+          li.appendChild(rank); li.appendChild(name); li.appendChild(score);
+          rows.appendChild(li);
+        });
+        document.getElementById('leaderboard').hidden = false;
+      }).catch(function () { /* stay hidden */ });
     }());
   </script>
 

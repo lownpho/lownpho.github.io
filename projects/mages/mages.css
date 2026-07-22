@@ -435,6 +435,32 @@ body.mages {
   .title { font-size: 2.2rem; }
 }
 
+/* ---- Leaderboard ---- */
+.board {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.board li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.15rem 0;
+}
+.board-rank {
+  min-width: 2ch;
+  text-align: right;
+  color: var(--dim);
+}
+.board li:first-child .board-rank { color: var(--yellow); }
+.board-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.board-score { color: var(--cyan); }
+
 /* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .spr { animation: none; }
