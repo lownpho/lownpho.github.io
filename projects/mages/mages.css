@@ -47,7 +47,8 @@ body.mages {
 .stage,
 .hero-portrait,
 .play-btn,
-.play-cta {
+.play-cta,
+.dl-btn {
   clip-path: polygon(
     0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0,
     calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
@@ -55,8 +56,7 @@ body.mages {
     8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
   );
 }
-.back,
-.key {
+.back {
   clip-path: polygon(
     0 4px, 2px 4px, 2px 2px, 4px 2px, 4px 0,
     calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px,
@@ -326,8 +326,38 @@ body.mages {
 .poster:hover .play-cta { background: var(--lime); color: var(--bg); }
 .poster .play-cta .pix { width: 16px; height: 16px; fill: currentColor; }
 
+/* ---- Desktop downloads, right under the stage ---- */
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+.dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 1.6rem;
+  background: var(--indigo);
+  color: var(--text);
+  text-decoration: none;
+  font-family: 'Silkscreen', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  transition: background 0.08s steps(2), color 0.08s steps(2);
+}
+.dl-btn .pix { width: 16px; height: 16px; fill: currentColor; }
+.dl-btn:hover { background: var(--cyan); color: var(--bg); }
+.dl-note {
+  color: var(--grey);
+  font-size: 1.05rem;
+  text-align: center;
+  margin-top: 0.7rem;
+}
+
 /* =============================================
-   CONTENT PANELS (about / controls)
+   CONTENT PANELS (about / leaderboard)
    ============================================= */
 .panel {
   background: var(--indigo);
@@ -350,53 +380,6 @@ body.mages {
 }
 .prose p:last-child { margin-bottom: 0; }
 .prose .placeholder { color: var(--grey); font-style: italic; }
-
-/* ---- Controls: pixel keycaps ---- */
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.75rem 2.5rem;
-  align-items: center;
-}
-.control {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-.control .label {
-  font-family: 'Silkscreen', monospace;
-  font-size: 0.62rem;
-  color: var(--dim);
-  letter-spacing: 0.04em;
-}
-
-.keys { display: inline-flex; gap: 4px; }
-.keys--stack { flex-direction: column; align-items: center; gap: 4px; }
-.keys--stack .row { display: inline-flex; gap: 4px; }
-
-.key {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 30px;
-  height: 30px;
-  padding: 0 6px;
-  background: var(--plum);
-  color: var(--text);
-  font-family: 'Silkscreen', monospace;
-  font-size: 0.6rem;
-}
-.key--wide { padding: 0 10px; }
-.key--drag { padding: 0 10px; letter-spacing: 0.08em; }
-.key--mouse { padding: 0 9px; gap: 4px; }
-.key--mouse .pix { height: 18px; width: auto; fill: currentColor; }
-.key-or {
-  align-self: center;
-  font-family: 'VT323', monospace;
-  font-size: 0.9rem;
-  color: var(--grey);
-  padding: 0 1px;
-}
 
 /* =============================================
    FOOTER
@@ -429,7 +412,6 @@ body.mages {
   .cluster--right { justify-content: center; }
 
   .glade { --s: 4; }
-  .controls { gap: 1.5rem 2rem; }
 }
 @media (max-width: 420px) {
   .title { font-size: 2.2rem; }
