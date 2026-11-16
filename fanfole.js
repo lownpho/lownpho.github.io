@@ -15,32 +15,21 @@ const POEM_TITLES = [
 function parseFanfole(raw) {
   const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
   const verses = [];
-  const words = new Set();
+  const poems = [];
 
   for (const line of lines) {
-    if (POEM_TITLES.includes(line)) continue;
+    if (POEM_TITLES.includes(line.replace(/’/g, "'"))) { poems.push({ title: line, lines: [] }); continue; }
+    poems.at(-1)?.lines.push(line);
     if (/^[-–—]/.test(line)) continue;
     verses.push(line);
-    for (const w of line.replace(/[^a-zA-ZÀ-ÿ'']/g, ' ').split(/\s+/)) {
-      if (w.length >= 4) words.add(w);
-    }
   }
 
-  return { verses, words: [...words] };
+  // the book title and author are in POEM_TITLES too, but have no lines
+  return { verses, poems: poems.filter(p => p.lines.length) };
 }
 
 function pick(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function pickPhrase(verses, minLen, maxLen) {
-  const candidates = verses.filter(v => v.length >= minLen && v.length <= maxLen);
-  return pick(candidates.length ? candidates : verses);
-}
-
-function pickWords(wordList, n) {
-  const shuffled = [...wordList].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, n).join(' ');
 }
 
 function resolvePath() {
@@ -54,25 +43,18 @@ async function init() {
     const res = await fetch(resolvePath());
     if (!res.ok) return;
     const raw = await res.text();
-    const { verses, words } = parseFanfole(raw);
+    const { verses, poems } = parseFanfole(raw);
 
-    // Fill footer fanfola
+    // Fill footer fanfola (mages page)
     const footerEl = document.getElementById('fanfola');
     if (footerEl) footerEl.textContent = pick(verses);
 
-    // Fill placeholder titles (data-fanfole="title")
-    document.querySelectorAll('[data-fanfole="title"]').forEach(el => {
-      el.textContent = pickWords(words, 2 + Math.floor(Math.random() * 2));
-    });
-
-    // Fill placeholder descriptions (data-fanfole="desc")
-    document.querySelectorAll('[data-fanfole="desc"]').forEach(el => {
-      el.textContent = pickPhrase(verses, 30, 80);
-    });
-
-    // Fill placeholder tags (data-fanfole="tag")
-    document.querySelectorAll('[data-fanfole="tag"]').forEach(el => {
-      el.textContent = pickWords(words, 1);
+    // Fill whole-poem targets (data-fanfole="poem": an <h2> and a <p>);
+    // data-poem="<title>" picks that poem, otherwise a random one
+    document.querySelectorAll('[data-fanfole="poem"]').forEach(el => {
+      const poem = poems.find(p => p.title === el.dataset.poem) ?? pick(poems);
+      el.querySelector('h2').textContent = poem.title;
+      el.querySelector('p').textContent = poem.lines.join('\n');
     });
   } catch (e) {
     // silently fail — placeholders stay as-is

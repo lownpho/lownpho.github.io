@@ -1,20 +1,24 @@
 /* ============================================
-   lownpho — personal site
-   Inter + Fraunces | Bold minimalism
+   lownpho — single-page hub
+   Sticker collage: heavy Inter, hot primaries,
+   thick outlines, hard shadows, round corners.
    ============================================ */
 
 :root {
-  --white: #ffffff;
-  --black: #1a1a1a;
-  --grey: #999;
-  --cyan: #00AEEF;
-  --magenta: #EC008C;
-  --yellow: #FFD700;
-  --rule-weight: 3px;
+  --ground: #FFF6E5;
+  --line: #111111;      /* outlines + shadows */
+  --ink: #111111;       /* text on stickers */
+  --paper: #ffffff;
+  --red: #FF4136;
+  --blue: #2F5BFF;
+  --yellow: #FFD60A;
+  --green: #2ECC71;
+  --pink: #FF6FB5;
+  --border: 4px;
+  --shadow: 8px;
   --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --font-accent: 'Fraunces', Georgia, serif;
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -23,546 +27,354 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 18px;
-}
+html { font-size: 18px; }
 
 body {
   font-family: var(--font-body);
-  background: var(--white);
-  color: var(--black);
+  background: var(--ground);
+  color: var(--ink);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* ---- Color utilities ---- */
+.c-red  { color: var(--red); }
+.c-blue { color: var(--blue); }
+.c-pink { color: var(--pink); }
 
-.c-cyan { color: var(--cyan); }
-.c-magenta { color: var(--magenta); }
-.c-yellow { color: var(--yellow); }
+/* ---- Desk: a tilted, overlapping column by default (phones) ---- */
 
-
-/* =============================================
-   LANDING PAGE
-   ============================================= */
-
-.landing {
+.desk {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+  max-width: 1100px;
   min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 640px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 2.5rem 1.4rem 3.5rem;
 }
 
-.landing-header {
-  margin-bottom: 0.5rem;
-  animation: revealUp 0.7s var(--ease-smooth) both;
-}
+/* ---- Sticker ---- */
 
-.landing-name {
-  font-family: var(--font-body);
-  font-size: 5rem;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  margin-bottom: 1.2rem;
-}
-
-.landing-tagline {
-  font-family: var(--font-accent);
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.5;
-  max-width: 28ch;
-}
-
-.landing-tagline em {
-  font-style: italic;
-  color: var(--magenta);
-}
-
-/* ---- Bold nav blocks ---- */
-
-.landing-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-top: 3rem;
-  animation: revealUp 0.7s var(--ease-smooth) 0.2s both;
-}
-
-.nav-block {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.4rem 1.2rem;
+.sticker {
+  --tilt: 0deg;
+  position: relative;
+  display: block;
+  max-width: 100%;
+  padding: 1.2rem 1.5rem;
+  background: var(--paper);
+  color: var(--ink);
   text-decoration: none;
-  color: var(--black);
-  border-bottom: var(--rule-weight) solid var(--black);
-  transition:
-    padding-left 0.4s var(--ease-spring),
-    background 0.35s ease,
-    color 0.35s ease;
+  border: var(--border) solid var(--line);
+  border-radius: 28px;
+  box-shadow: var(--shadow) var(--shadow) 0 var(--line);
+  transform: rotate(var(--tilt));
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
 }
 
-.nav-block:first-child {
-  border-top: var(--rule-weight) solid var(--black);
+.sticker:hover,
+.sticker:focus-visible {
+  z-index: 10;
+  transform: rotate(0deg) translate(-4px, -4px) scale(1.03);
+  box-shadow: calc(var(--shadow) + 6px) calc(var(--shadow) + 6px) 0 var(--line);
 }
 
-.nav-block-label {
-  font-family: var(--font-body);
-  font-size: 2.2rem;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1;
+a.sticker:hover,
+a.sticker:focus-visible,
+button.sticker:hover,
+button.sticker:focus-visible {
+  animation: wobble 0.5s ease-in-out;
+  outline: none;
 }
 
-.nav-block-initial {
-  transition: color 0.35s ease;
+@keyframes wobble {
+  0%   { transform: rotate(var(--tilt)); }
+  30%  { transform: rotate(-3deg) translate(-4px, -4px) scale(1.05); }
+  65%  { transform: rotate(2deg) translate(-4px, -4px) scale(1.04); }
+  100% { transform: rotate(0deg) translate(-4px, -4px) scale(1.03); }
 }
 
-.nav-block-rest {
-  transition: color 0.35s ease;
-}
-
-.nav-block--cyan .nav-block-initial { color: var(--cyan); }
-.nav-block--magenta .nav-block-initial { color: var(--magenta); }
-.nav-block--yellow .nav-block-initial { color: var(--yellow); }
-
-.nav-block-arrow {
-  width: 14px;
-  height: 14px;
-  border-top: var(--rule-weight) solid;
-  border-right: var(--rule-weight) solid;
-  transform: rotate(45deg);
-  flex-shrink: 0;
-  transition: transform 0.4s var(--ease-spring), border-color 0.35s ease;
-}
-
-.nav-block:hover {
-  padding-left: 2rem;
-  background: var(--black);
-  color: var(--white);
-}
-
-.nav-block:hover .nav-block-initial {
-  color: var(--white);
-}
-
-.nav-block--cyan:hover .nav-block-rest { color: var(--cyan); }
-.nav-block--magenta:hover .nav-block-rest { color: var(--magenta); }
-.nav-block--yellow:hover .nav-block-rest { color: var(--yellow); }
-
-.nav-block:hover .nav-block-arrow {
-  transform: rotate(45deg) translateX(4px) translateY(-4px);
-}
-
-/* Arrow color variants */
-.arrow--cyan  { border-color: var(--cyan); }
-.arrow--magenta { border-color: var(--magenta); }
-.arrow--yellow { border-color: var(--yellow); }
-
-/* ---- Landing footer ---- */
-
-.landing-footer {
-  margin-top: 4rem;
-  animation: revealUp 0.7s var(--ease-smooth) 0.35s both;
-}
-
-/* =============================================
-   SUBPAGES (projects, writing)
-   ============================================= */
-
-.page {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 4rem;
-}
-
-/* ---- Back nav ---- */
-
-.page-nav {
-  margin-bottom: 3rem;
-  animation: revealUp 0.5s var(--ease-smooth) both;
-}
-
-.back-link {
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--black);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 0.7rem;
-  transition:
-    background 0.35s ease,
-    color 0.35s ease,
-    padding-left 0.4s var(--ease-spring);
-}
-
-.back-logo > span {
-  letter-spacing: 0.1em;
-}
-
-.back-link:hover {
-  background: var(--black);
-  color: var(--white);
-  padding-left: 1rem;
-}
-
-.back-link:hover .c-cyan,
-.back-link:hover .c-magenta,
-.back-link:hover .c-yellow {
-  color: var(--white);
-}
-
-.back-link:hover .c-hover-cyan { color: var(--cyan); }
-.back-link:hover .c-hover-magenta { color: var(--magenta); }
-.back-link:hover .c-hover-yellow { color: var(--yellow); }
-
-.back-logo > span {
-  transition: color 0.35s ease;
-}
-
-.back-arrow {
+.tag {
   display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-bottom: 2px solid;
-  border-left: 2px solid;
-  transform: rotate(45deg);
-  transition: transform 0.3s var(--ease-spring), border-color 0.3s ease;
+  padding: 0.2rem 0.7rem;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.back-link:hover .back-arrow {
-  transform: rotate(45deg) translateX(-3px) translateY(3px);
-  border-color: var(--white);
-}
-
-/* ---- Page header ---- */
-
-.page-header {
-  margin-bottom: 0.5rem;
-  animation: revealUp 0.6s var(--ease-smooth) 0.05s both;
-}
-
-.page-title {
-  font-family: var(--font-body);
-  font-size: 3.5rem;
+.title {
+  display: block;
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1;
 }
 
-/* =============================================
-   SHARED
-   ============================================= */
+/* ---- Name ---- */
 
-/* ---- Dividers ---- */
-
-.divider {
-  border: none;
-  border-top: var(--rule-weight) solid var(--black);
-  margin: 2.5rem 0;
-  animation: scaleIn 0.6s var(--ease-smooth) 0.15s both;
+.s-name {
+  --tilt: -3deg;
+  align-self: center;
+  padding: 0.6rem 1.6rem 1rem;
+  font-size: clamp(3.4rem, 17vw, 8.5rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  /* no box: the letters sit straight on the ground */
+  background: none;
+  border: 0;
+  box-shadow: none;
 }
 
-/* ---- Card grid ---- */
+.s-name:hover { box-shadow: none; }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.2rem;
-  animation: revealUp 0.7s var(--ease-smooth) 0.25s both;
-}
+/* ---- Bio ---- */
 
-/* ---- Cards ---- */
-
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 1.8rem 1.6rem;
-  border: var(--rule-weight) solid var(--black);
-  text-decoration: none;
-  color: var(--black);
-  background: var(--white);
-  overflow: hidden;
-  transition:
-    transform 0.4s var(--ease-spring),
-    box-shadow 0.4s var(--ease-smooth),
-    background 0.35s ease,
-    color 0.35s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 0 0 var(--black);
-  background: var(--black);
-  color: var(--white);
-}
-
-.card-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 5px;
-  background: var(--black);
-  transition: width 0.5s var(--ease-spring);
-}
-
-.card:hover .card-border {
-  width: 100%;
-  background: var(--magenta);
-}
-
-.card-tag {
-  font-family: var(--font-body);
-  font-size: 0.62rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  border: 2px solid var(--black);
-  padding: 0.2rem 0.55rem;
-  align-self: flex-start;
-  margin-bottom: 1.2rem;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.card:hover .card-tag {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
-}
-
-.card-title {
-  font-family: var(--font-body);
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  margin-bottom: 0.6rem;
-  transition: color 0.35s ease;
-}
-
-.card:hover .card-title {
-  color: var(--magenta);
-}
-
-.card-desc {
+.s-bio {
+  --tilt: 2deg;
+  align-self: center;
+  margin: -0.6rem 0 2.5rem; /* title + tagline sit apart from the rest */
+  max-width: 22ch;
+  background: var(--yellow);
   font-family: var(--font-accent);
-  font-size: 0.88rem;
-  font-weight: 350;
-  line-height: 1.6;
-  color: var(--black);
-  flex-grow: 1;
-  transition: color 0.35s ease;
+  font-size: 1.35rem;
+  line-height: 1.35;
 }
 
-.card:hover .card-desc {
-  color: var(--white);
+.s-bio em { font-weight: 700; }
+
+/* ---- Projects (.big) ---- */
+
+.big {
+  align-self: center;
+  width: min(100%, 28rem);
+  padding: 1.5rem 1.6rem 1.6rem;
 }
 
-.card-arrow {
+.big .title {
+  margin: 0.8rem 0 0.5rem;
+  font-size: clamp(3.6rem, 16vw, 4.8rem);
+  text-transform: uppercase;
+}
+
+.big .desc {
   display: block;
-  width: 12px;
-  height: 12px;
-  border-top: var(--rule-weight) solid;
-  border-right: var(--rule-weight) solid;
-  transform: rotate(45deg);
-  margin-top: auto;
-  padding-top: 1rem;
-  align-self: flex-end;
-  transition:
-    transform 0.4s var(--ease-spring),
-    border-color 0.35s ease;
-}
-
-.card:hover .card-arrow {
-  transform: rotate(45deg) translateX(4px) translateY(-4px);
-}
-
-/* ---- "Coming soon" variant ---- */
-
-.card--soon {
-  border-style: dashed;
-  cursor: default;
-}
-
-.card--soon:hover {
-  transform: translateY(-3px) rotate(-0.5deg);
-  box-shadow: 0 6px 0 0 var(--grey);
-  background: var(--grey);
-  color: var(--white);
-}
-
-.card--soon .card-border {
-  background: var(--grey);
-}
-
-.card--soon .card-tag {
-  border-color: var(--grey);
-  color: var(--grey);
-}
-
-.card--soon:hover .card-tag {
-  background: var(--white);
-  color: var(--grey);
-  border-color: var(--white);
-}
-
-.card--soon .card-title {
-  color: var(--grey);
-  transition: color 0.35s ease;
-}
-
-.card--soon:hover .card-title {
-  color: var(--white);
-}
-
-.card--soon .card-desc {
-  color: var(--grey);
-}
-
-.card--soon:hover .card-desc {
-  color: var(--white);
-}
-
-.card--soon:hover .card-border {
-  background: var(--white);
-}
-
-/* ---- Footer ---- */
-
-.page-footer {
-  margin-top: 3rem;
-  animation: revealUp 0.7s var(--ease-smooth) 0.35s both;
-}
-
-.footer-text {
-  font-family: var(--font-accent);
-  font-size: 0.85rem;
-  font-weight: 350;
-  font-style: italic;
-  color: var(--grey);
-}
-
-.github-link {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  color: var(--black);
-  border-bottom: 2px solid var(--black);
-  padding-bottom: 0.15rem;
-  transition: color 0.3s ease, border-color 0.3s ease;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-.github-link:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-}
-
-/* ---- About prose ---- */
-
-.about-prose {
-  animation: revealUp 0.7s var(--ease-smooth) 0.2s both;
-}
-
-.about-prose p {
-  font-family: var(--font-accent);
+  max-width: 24ch;
   font-size: 1rem;
-  font-weight: 350;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
-.about-prose p:last-child {
-  margin-bottom: 0;
+.big .arrow {
+  position: absolute;
+  right: 1.4rem;
+  bottom: 1rem;
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1;
+  transition: transform 0.4s var(--ease-spring);
 }
 
-/* ---- Game embed ---- */
+.big:hover .arrow { transform: translateX(8px); }
 
-.game-embed {
-  margin-top: 2.5rem;
-  border: var(--rule-weight) solid var(--black);
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  animation: revealUp 0.7s var(--ease-smooth) 0.3s both;
+/* ---- Skyfall (no page yet) ---- */
+
+.s-skyfall {
+  --tilt: 3deg;
+  background: var(--green);
 }
 
-.game-embed iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: none;
+/* ---- Mages ---- */
+
+.s-mages {
+  --tilt: -2deg;
+  --s: 7;
+  margin-top: calc(16px * var(--s) - 1rem); /* room for the sprites standing on top */
+  background: var(--blue);
+  color: #fff;
 }
 
-/* ---- Animations ---- */
+.s-mages .tag { color: var(--ink); }
 
-@keyframes revealUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Sprites stand on the sticker's top edge (sheets live in mages/spritesheets) */
+.mages-sprites {
+  position: absolute;
+  right: 1.6rem;
+  bottom: calc(100% + var(--border));
+  display: flex;
+  align-items: flex-end;
+  gap: calc(3px * var(--s));
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  to {
-    opacity: 1;
-    transform: scaleX(1);
-  }
+.spr {
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
 }
 
-/* ---- Responsive ---- */
+/* 16x16 frame, 4-frame idle; character sits 4px above the frame bottom */
+.spr-player {
+  width: calc(16px * var(--s));
+  height: calc(16px * var(--s));
+  margin-bottom: calc(-4px * var(--s));
+  background-image: url("mages/spritesheets/player.png");
+  background-size: calc(64px * var(--s)) calc(16px * var(--s));
+  animation: idle-4 0.8s steps(4) infinite;
+}
 
-@media (max-width: 480px) {
-  html { font-size: 16px; }
+/* 8x8 frame, 2-frame idle */
+.spr-mandrake {
+  width: calc(8px * var(--s));
+  height: calc(8px * var(--s));
+  background-image: url("mages/spritesheets/mandrake.png");
+  background-size: calc(16px * var(--s)) calc(8px * var(--s));
+  animation: idle-2 0.9s steps(2) infinite;
+}
 
-  .landing {
-    padding: 2rem 1.25rem;
+@keyframes idle-4 { to { background-position-x: calc(-64px * var(--s)); } }
+@keyframes idle-2 { to { background-position-x: calc(-16px * var(--s)); } }
+
+/* ---- GitHub ---- */
+
+.s-github {
+  --tilt: -8deg;
+  align-self: flex-end;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  width: 7rem;
+  height: 7rem;
+  padding: 0;
+  background: var(--red);
+  border-radius: 50%;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.s-github span { font-size: 1.4rem; line-height: 1; }
+
+/* ---- LinkedIn ---- */
+
+.s-linkedin {
+  --tilt: -6deg;
+  padding: 0.7rem 1.3rem 0.8rem;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 18px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+/* ---- Openers: <details> stickers that expand in place ---- */
+
+.opener {
+  padding: 0;
+  border-radius: 18px;
+}
+
+.opener summary {
+  padding: 0.5rem 1.2rem 0.7rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  list-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.opener summary::-webkit-details-marker { display: none; }
+
+.opener[open] {
+  --tilt: 0deg;
+  z-index: 20;
+  align-self: stretch;
+  border-radius: 28px;
+}
+
+.opener[open] summary { padding: 1.3rem 1.6rem 0.5rem; }
+
+/* stay put while open: it's a thing you read, not a thing you click */
+.opener[open]:hover { transform: none; box-shadow: var(--shadow) var(--shadow) 0 var(--line); }
+
+/* too tall for one screen: flow into columns (class and its grid cell set by index.html) */
+.opener.wide .opener-body p { columns: 17rem; column-gap: 2.5rem; }
+
+.opener-body {
+  padding: 0.6rem 1.6rem 1.6rem;
+  animation: reveal 0.35s var(--ease-spring);
+}
+
+@keyframes reveal {
+  from { transform: translateY(-0.6rem); opacity: 0; }
+}
+
+.opener-body h2 {
+  margin-bottom: 0.7rem;
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.opener-body p,
+.opener-body ul {
+  font-family: var(--font-accent);
+  font-size: clamp(0.8rem, 3.6vw, 1rem);
+  line-height: 1.5;
+}
+
+.opener-body p + p { margin-top: 0.8rem; }
+.opener-body .credit { margin-top: 1.2rem; text-align: right; font-size: 0.85em; }
+.opener-body a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.opener-body a:hover { background: var(--paper); }
+
+.opener-body ul { padding-left: 1.1rem; }
+.opener-body li + li { margin-top: 0.3rem; }
+
+[data-fanfole="poem"] p { white-space: pre-line; }
+
+/* a chosen poem's title is already the summary */
+[data-poem] h2 { display: none; }
+
+/* each opener: fill, shape, tilt */
+.blob summary { padding: 1.1rem 1.8rem 1.3rem; }
+
+.s-work    { --tilt: 4deg;  background: var(--yellow); border-radius: 999px; }
+.s-like    { --tilt: 6deg;  background: var(--green);   border-radius: 62% 38% 55% 45% / 48% 60% 40% 52%; align-self: center; }
+.s-believe { --tilt: -5deg; background: var(--pink); align-self: center; }
+.s-lonfo   { --tilt: 4deg;  background: var(--red);  border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; align-self: flex-end; }
+
+/* ---- Desktop: rows on a 12-column grid ----
+   Title and tagline take full rows. Each .big sticker gets its own row at a
+   random column (set by the script in index.html). Everything else is small
+   and flows into the gaps in DOM order. */
+
+@media (min-width: 1100px) {
+  .desk {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-flow: row dense;
+    gap: 2.5rem 1.5rem;
+    place-items: center;
+    align-content: start; /* don't stretch rows to fill min-height */
+    padding: 2.5rem 2rem 4rem;
   }
 
-  .landing-name {
-    font-size: 3.2rem;
-  }
+  .sticker { grid-column: span 3; align-self: center; }
+  .s-name, .s-bio { grid-column: 1 / -1; }
+  /* start = centre while a .big is its row's tallest; keeps it still when an opener grows the row */
+  .big { grid-column: var(--col, 4) / span 6; grid-row: var(--row); align-self: start; }
 
-  .nav-block-label {
-    font-size: 1.6rem;
-  }
+  /* open: pinned to its cell by the script in index.html; grows down and right */
+  .opener[open] { align-self: start; justify-self: stretch; }
+}
 
-  .nav-block-arrow {
-    width: 11px;
-    height: 11px;
-  }
-
-  .page {
-    padding: 2rem 1.25rem 3rem;
-  }
-
-  .page-title {
-    font-size: 2.6rem;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .sticker, .big .arrow { transition: none; }
+  .sticker:hover, .sticker:focus-visible, .spr, .opener-body { animation: none; }
 }
