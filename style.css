@@ -300,7 +300,7 @@ button.sticker:focus-visible {
 }
 
 /* phones: an open one takes its own full row */
-@media (max-width: 1099.98px) {
+@media not all and (min-width: 800px) and (min-height: 500px) and (orientation: landscape) {
   .opener[open] { grid-column: 1 / -1; justify-self: stretch; }
 }
 
@@ -404,10 +404,10 @@ button.sticker:focus-visible {
    A 20x12 grid exactly one viewport tall. The map below says which cells each
    sticker owns: projects take big blocks, small stickers take a few cells,
    dots are empty space. Every sticker sits centred in its block. Type scales
-   with the viewport (rem), so the same map works from 1100 wide up. */
+   with the viewport (rem), so the same map works on any landscape screen from 800x500 up. */
 
-@media (min-width: 1100px) {
-  html { font-size: clamp(12px, min(1.25vw, 2vh), 18px); }
+@media (min-width: 800px) and (min-height: 500px) and (orientation: landscape) {
+  html { font-size: clamp(10px, min(1.25vw, 2vh), 18px); }
   body { overflow: hidden; }
 
   .desk {

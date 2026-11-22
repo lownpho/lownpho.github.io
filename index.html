@@ -139,7 +139,7 @@
     <script>
       // Openers: any click closes open ones; opening one widens it if it is
       // taller than the screen, then (desktop) nudges it back inside the viewport.
-      const desktop = matchMedia("(min-width: 1100px)");
+      const desktop = matchMedia("(min-width: 800px) and (min-height: 500px) and (orientation: landscape)");
 
       function keepOnScreen(d) {
         d.style.translate = "";

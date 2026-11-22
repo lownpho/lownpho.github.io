@@ -32,12 +32,12 @@ Poems: an `.opener-body` with `data-fanfole="poem"` holds an `<h2>` and a `<p>`;
 ## Place it
 
 1. DOM order is the phone order: title, tagline, then projects interleaved with small stickers (a pair of small ones between projects, the rest after), links and openers mixed (not grouped by kind). Phones scroll a grid: title, tagline and projects span full rows (`grid-column: 1 / -1`), small stickers pack two or more per row; nudge one inside its cell with `justify-self` only.
-2. Desktop (`@media (min-width: 1100px)`) is the whole collage on **one screen, no scrolling**: a 20x12 `grid-template-areas` map in `style.css`, exactly one viewport tall, with type scaled to the viewport. Each sticker gets one `grid-area` line there and sits centred in its block. To add a sticker, claim an empty rectangle of `.` cells in the map (bigger block = more important) and add its `grid-area`; leave empty cells around things, the gaps are part of the look. If there is no room, move things or shrink blocks; never add rows past 12 or make the page scroll.
+2. Desktop (`@media (min-width: 800px) and (min-height: 500px) and (orientation: landscape)`, so any landscape PC window, not only wide ones) is the whole collage on **one screen, no scrolling**: a 20x12 `grid-template-areas` map in `style.css`, exactly one viewport tall, with type scaled to the viewport. Each sticker gets one `grid-area` line there and sits centred in its block. To add a sticker, claim an empty rectangle of `.` cells in the map (bigger block = more important) and add its `grid-area`; leave empty cells around things, the gaps are part of the look. If there is no room, move things or shrink blocks; never add rows past 12 or make the page scroll.
 3. Re-check fill and tilt adjacency in the map, since neighbours there are what touch.
 4. Open openers float over their neighbours (desktop width 26rem, `.wide` when taller than the screen); the inline script in `index.html` nudges them back inside the viewport. Nothing reflows.
 
 ## Check
 
-Serve over HTTP (the poems are fetched, `file://` leaves `···`) and screenshot with headless Chrome at 1100x800, 1440x900, 1280x650 and 390 wide; click openers open too (one taller than the screen should go `.wide`).
+Serve over HTTP (the poems are fetched, `file://` leaves `···`) and screenshot with headless Chrome at 900x600, 1100x800, 1440x900, 1280x650 and 390 wide; click openers open too (one taller than the screen should go `.wide`).
 
 Done when, at all three sizes: every sticker's text is fully readable with no other sticker covering it, there is no scroll at all on desktop (no horizontal scroll on phones), and the new sticker's size matches its importance.
