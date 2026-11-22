@@ -1,6 +1,124 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="refresh" content="0; url=https://www.vatican.va">
-</head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>OnlyFanfole · exclusive content</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <style>
+      :root {
+        --accent: #00aff0;
+        --ink: #1a1a1a;
+        --muted: #8a96a3;
+        --line: #e6ecf0;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: #f4f6f8;
+        color: var(--ink);
+        font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      header {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        padding: 0.8rem 1rem;
+        font-weight: 800;
+        font-size: 1.3rem;
+        letter-spacing: -0.03em;
+      }
+      header span { color: var(--accent); }
+      main { max-width: 32rem; margin: 0 auto; padding: 1rem; }
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+      .who { display: flex; gap: 0.75rem; align-items: center; padding: 1rem; }
+      .avatar {
+        width: 3rem; height: 3rem; border-radius: 50%;
+        background: url(cat.jpg) 70% 4% / 260% no-repeat;
+        border: 2px solid var(--accent);
+        flex: none;
+      }
+      .who b { display: block; }
+      .who small { color: var(--muted); }
+      .photo { position: relative; overflow: hidden; }
+      .photo img { display: block; width: 100%; height: auto; transition: filter 0.6s, transform 0.6s; }
+      .locked img { filter: blur(28px) saturate(1.4); transform: scale(1.2); }
+      .gate {
+        position: absolute; inset: 0;
+        display: grid; place-content: center; gap: 0.75rem;
+        text-align: center; padding: 1.5rem; color: #fff;
+        text-shadow: 0 1px 4px #0008;
+      }
+      .photo:not(.locked) .gate { display: none; }
+      .price b { font-size: 2.2rem; }
+      .gate ul { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; line-height: 1.7; }
+      button {
+        font: inherit; font-weight: 700; color: #fff; background: var(--accent);
+        border: 0; border-radius: 999px; padding: 0.8rem 1.4rem; cursor: pointer;
+      }
+      .after { display: none; padding: 1rem; margin: 0; }
+      .photo:not(.locked) + .after { display: block; }
+      .stats { display: flex; gap: 1.2rem; padding: 0.8rem 1rem; color: var(--muted); border-top: 1px solid var(--line); font-size: 0.9rem; }
+      footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 1.5rem 1rem 2rem; }
+      footer p { margin: 0 0 1.8rem; }
+      footer a {
+        display: block; width: fit-content; margin: 0.4rem auto 0; padding: 0.3rem 0.8rem;
+        border-radius: 999px; background: var(--accent); color: #fff;
+        font-weight: 700; text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Only<span>Fanfole</span></header>
+    <main>
+      <p><strong>Oh. You clicked.</strong> Shame on you.</p>
+
+      <article class="card">
+        <div class="who">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <b>Dario</b>
+            <small>@lownpho · online now · 1 post</small>
+          </div>
+        </div>
+
+        <div class="photo locked" id="photo">
+          <img
+            src="cat.jpg"
+            width="1000"
+            height="1680"
+            alt="Dario in a hot-pink and purple striped Cheshire cat costume with a yarn tail, bent over and looking back over the shoulder through yellow glasses."
+          />
+          <div class="gate">
+            <strong>🔒 This post is for subscribers only.</strong>
+            <span class="price"><b>€0.00</b> / month</span>
+            <ul>
+              <li>Dignity: billed separately</li>
+            </ul>
+            <button type="button" onclick="photo.classList.remove('locked')">
+              Subscribe to see post
+            </button>
+          </div>
+        </div>
+        <p class="after">
+          There it is. Was it worth it? Look into those eyes and think about
+          what brought you here.
+        </p>
+
+        <div class="stats">
+          <span>♡ 1 like</span>
+          <span>💬 0 comments</span>
+        </div>
+      </article>
+    </main>
+    <footer>
+      <p>Cleanse your conscience. <a href="https://www.vatican.va">Repent ✝</a></p>
+      <p>Pretend this never happened. <a href="/">← Go back</a></p>
+    </footer>
+  </body>
 </html>
