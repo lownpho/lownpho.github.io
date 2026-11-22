@@ -27,7 +27,7 @@
   box-sizing: border-box;
 }
 
-html { font-size: 18px; }
+html { font-size: 16px; }
 
 body {
   font-family: var(--font-body);
@@ -41,12 +41,15 @@ body {
 .c-blue { color: var(--blue); }
 .c-pink { color: var(--pink); }
 
-/* ---- Desk: a tilted, overlapping column by default (phones) ---- */
+/* ---- Desk (phones): title, tagline and projects take full rows,
+   small stickers pack two or more per row ---- */
 
 .desk {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  align-content: start;
+  align-items: center;
+  justify-items: center;
   gap: 1.6rem;
   max-width: 1100px;
   min-height: 100dvh;
@@ -69,7 +72,7 @@ body {
   border-radius: 28px;
   box-shadow: var(--shadow) var(--shadow) 0 var(--line);
   transform: rotate(var(--tilt));
-  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring), translate 0.4s var(--ease-spring);
 }
 
 .sticker:hover,
@@ -117,7 +120,7 @@ button.sticker:focus-visible {
 
 .s-name {
   --tilt: -3deg;
-  align-self: center;
+  grid-column: 1 / -1;
   padding: 0.6rem 1.6rem 1rem;
   font-size: clamp(3.4rem, 17vw, 8.5rem);
   font-weight: 900;
@@ -135,8 +138,8 @@ button.sticker:focus-visible {
 
 .s-bio {
   --tilt: 2deg;
-  align-self: center;
-  margin: -0.6rem 0 2.5rem; /* title + tagline sit apart from the rest */
+  grid-column: 1 / -1;
+  margin: -0.6rem 0 1rem; /* title + tagline sit apart from the rest */
   max-width: 22ch;
   background: var(--yellow);
   font-family: var(--font-accent);
@@ -149,7 +152,7 @@ button.sticker:focus-visible {
 /* ---- Projects (.big) ---- */
 
 .big {
-  align-self: center;
+  grid-column: 1 / -1;
   width: min(100%, 28rem);
   padding: 1.5rem 1.6rem 1.6rem;
 }
@@ -191,7 +194,7 @@ button.sticker:focus-visible {
 
 .s-mages {
   --tilt: -2deg;
-  --s: 7;
+  --s: 5; /* sprite scale; 7 on desktop */
   margin-top: calc(16px * var(--s) - 1rem); /* room for the sprites standing on top */
   background: var(--blue);
   color: #fff;
@@ -240,7 +243,7 @@ button.sticker:focus-visible {
 
 .s-github {
   --tilt: -8deg;
-  align-self: flex-end;
+  justify-self: end;
   display: grid;
   place-content: center;
   justify-items: center;
@@ -267,6 +270,7 @@ button.sticker:focus-visible {
   font-size: 1.3rem;
   font-weight: 900;
   letter-spacing: -0.04em;
+  white-space: nowrap;
 }
 
 /* ---- Openers: <details> stickers that expand in place ---- */
@@ -292,8 +296,12 @@ button.sticker:focus-visible {
 .opener[open] {
   --tilt: 0deg;
   z-index: 20;
-  align-self: stretch;
   border-radius: 28px;
+}
+
+/* phones: an open one takes its own full row */
+@media (max-width: 1099.98px) {
+  .opener[open] { grid-column: 1 / -1; justify-self: stretch; }
 }
 
 .opener[open] summary { padding: 1.3rem 1.6rem 0.5rem; }
@@ -324,6 +332,7 @@ button.sticker:focus-visible {
 .opener-body p,
 .opener-body ul {
   font-family: var(--font-accent);
+  font-weight: 500;
   font-size: clamp(0.8rem, 3.6vw, 1rem);
   line-height: 1.5;
 }
@@ -333,8 +342,22 @@ button.sticker:focus-visible {
 .opener-body a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .opener-body a:hover { background: var(--paper); }
 
-.opener-body ul { padding-left: 1.1rem; }
-.opener-body li + li { margin-top: 0.3rem; }
+.opener-body strong { font-weight: 700; }
+
+/* bullets: small tilted ink squares instead of discs */
+.opener-body ul { list-style: none; }
+.opener-body li { position: relative; padding-left: 1.3rem; }
+.opener-body li + li { margin-top: 0.6rem; }
+.opener-body li::before {
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  top: 0.55em;
+  width: 0.5em;
+  height: 0.5em;
+  background: var(--ink);
+  transform: rotate(12deg);
+}
 
 [data-fanfole="poem"] p { white-space: pre-line; }
 
@@ -345,36 +368,99 @@ button.sticker:focus-visible {
 .blob summary { padding: 1.1rem 1.8rem 1.3rem; }
 
 .s-work    { --tilt: 4deg;  background: var(--yellow); border-radius: 999px; }
-.s-like    { --tilt: 6deg;  background: var(--green);   border-radius: 62% 38% 55% 45% / 48% 60% 40% 52%; align-self: center; }
-.s-believe { --tilt: -5deg; background: var(--pink); align-self: center; }
-.s-lonfo   { --tilt: 4deg;  background: var(--red);  border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; align-self: flex-end; }
+.s-like    { --tilt: 6deg;  background: var(--green);   border-radius: 62% 38% 55% 45% / 48% 60% 40% 52%; justify-self: start; }
+.s-believe { --tilt: -5deg; background: var(--pink); }
+.s-lonfo   { --tilt: 4deg;  background: var(--red);  border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; justify-self: end; }
 
-/* ---- Desktop: rows on a 12-column grid ----
-   Title and tagline take full rows. Each .big sticker gets its own row at a
-   random column (set by the script in index.html). Everything else is small
-   and flows into the gaps in DOM order. */
+/* ---- Scroll hint (phones): pinned pill at the bottom, fades after scrolling ---- */
+
+.scroll-cta {
+  --tilt: -3deg;
+  position: fixed;
+  left: 50%;
+  bottom: 1.4rem;
+  z-index: 30;
+  translate: -50% 0;
+  padding: 0.5rem 1.2rem 0.6rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  cursor: pointer;
+}
+
+.scroll-cta span { display: inline-block; animation: bob 1.2s ease-in-out infinite; }
+
+@keyframes bob { 50% { transform: translateY(0.2rem); } }
+
+.scroll-cta.gone {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+/* ---- Desktop: the whole collage on one screen ----
+   A 20x12 grid exactly one viewport tall. The map below says which cells each
+   sticker owns: projects take big blocks, small stickers take a few cells,
+   dots are empty space. Every sticker sits centred in its block. Type scales
+   with the viewport (rem), so the same map works from 1100 wide up. */
 
 @media (min-width: 1100px) {
+  html { font-size: clamp(12px, min(1.25vw, 2vh), 18px); }
+  body { overflow: hidden; }
+
   .desk {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-flow: row dense;
-    gap: 2.5rem 1.5rem;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    grid-template-rows: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      ".   .   .   .   nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  .   .   .   .  "
+      ".   wk  wk  wk  nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  .   gh  gh  .  "
+      ".   wk  wk  wk  nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  nm  .   gh  gh  .  "
+      ".   lk  lk  lk  .   .   .   bio bio bio bio bio bio .   .   bl  bl  bl  bl  .  "
+      ".   lk  lk  lk  .   .   .   bio bio bio bio bio bio .   .   bl  bl  bl  bl  .  "
+      "mg  mg  mg  mg  mg  mg  mg  mg  .   .   .   .   .   .   li  li  li  li  .   .  "
+      "mg  mg  mg  mg  mg  mg  mg  mg  .   .   .   .   .   .   li  li  li  li  .   .  "
+      "mg  mg  mg  mg  mg  mg  mg  mg  .   lo  lo  lo  sky sky sky sky sky sky sky sky"
+      "mg  mg  mg  mg  mg  mg  mg  mg  .   lo  lo  lo  sky sky sky sky sky sky sky sky"
+      "mg  mg  mg  mg  mg  mg  mg  mg  .   .   .   .   sky sky sky sky sky sky sky sky"
+      "mg  mg  mg  mg  mg  mg  mg  mg  .   .   .   .   sky sky sky sky sky sky sky sky"
+      "mg  mg  mg  mg  mg  mg  mg  mg  .   .   .   .   sky sky sky sky sky sky sky sky";
     place-items: center;
-    align-content: start; /* don't stretch rows to fill min-height */
-    padding: 2.5rem 2rem 4rem;
+    max-width: 1600px;
+    height: 100dvh;
+    min-height: 0;
+    padding: 1.5rem 2rem;
   }
 
-  .sticker { grid-column: span 3; align-self: center; }
-  .s-name, .s-bio { grid-column: 1 / -1; }
-  /* start = centre while a .big is its row's tallest; keeps it still when an opener grows the row */
-  .big { grid-column: var(--col, 4) / span 6; grid-row: var(--row); align-self: start; }
+  .s-name     { grid-area: nm; }
+  .s-bio      { grid-area: bio; margin: 0; }
+  .s-mages    { grid-area: mg; --s: 7; }
+  .s-skyfall  { grid-area: sky; }
+  .s-work     { grid-area: wk; }
+  .s-github   { grid-area: gh; }
+  .s-like     { grid-area: lk; }
+  .s-believe  { grid-area: bl; }
+  .s-linkedin { grid-area: li; }
+  .s-lonfo    { grid-area: lo; }
 
-  /* open: pinned to its cell by the script in index.html; grows down and right */
-  .opener[open] { align-self: start; justify-self: stretch; }
+  .sticker { place-self: center; }
+  .scroll-cta { display: none; }
+
+  /* open: floats over its neighbours from its own block; the script in
+     index.html nudges it back on screen */
+  .opener[open] {
+    align-self: center;
+    width: 26rem;
+    max-width: none;
+    max-height: calc(100dvh - 2rem);
+    overflow: auto;
+  }
+  .opener.wide[open] { width: min(56rem, 100vw - 4rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sticker, .big .arrow { transition: none; }
-  .sticker:hover, .sticker:focus-visible, .spr, .opener-body { animation: none; }
+  .sticker:hover, .sticker:focus-visible, .spr, .opener-body, .scroll-cta span { animation: none; }
 }

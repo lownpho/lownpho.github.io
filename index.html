@@ -1,179 +1,198 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lownpho</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>lownpho</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <body>
+    <main class="desk">
+      <h1 class="sticker s-name">
+        l<span class="c-red">o</span><span class="c-blue">w</span>nph<span
+          class="c-pink"
+          >o</span
+        >
+      </h1>
 
-<body>
+      <p class="sticker s-bio">
+        Hey look! I have a website too! <em>Now what?</em>
+      </p>
 
-  <main class="desk">
+      <a href="mages/" class="sticker big s-mages">
+        <span class="mages-sprites" aria-hidden="true">
+          <span class="spr spr-player"></span>
+          <span class="spr spr-mandrake"></span>
+        </span>
+        <span class="tag">Game</span>
+        <span class="title">Mages</span>
+        <span class="desc"
+          >Explore and go pew pew. Play it in the browser.</span
+        >
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
 
-    <h1 class="sticker s-name">l<span class="c-red">o</span><span class="c-blue">w</span>nph<span class="c-pink">o</span></h1>
+      <details class="sticker opener s-work">
+        <summary>work</summary>
+        <div class="opener-body">
+          <p>
+            Currently based around <strong>Dublin</strong>. I do software at
+            <a href="https://www.amd.com" target="_blank" rel="noopener">AMD</a
+            >, mostly on <strong>AI, embedded systems and networking</strong>. I've also worked
+            on several cool
+            <a
+              href="https://www.heramission.space/hera-mission-milani-cubesat"
+              target="_blank"
+              rel="noopener"
+              >space projects</a
+            >.
+          </p>
+        </div>
+      </details>
 
-    <p class="sticker s-bio">Hey look! I have a website too! <em>Now what?</em></p>
+      <a
+        href="https://github.com/lownpho"
+        target="_blank"
+        rel="noopener"
+        class="sticker s-github"
+        >GitHub<span aria-hidden="true">↗</span></a
+      >
 
-    <a href="mages/" class="sticker big s-mages">
-      <span class="mages-sprites" aria-hidden="true">
-        <span class="spr spr-player"></span>
-        <span class="spr spr-mandrake"></span>
-      </span>
-      <span class="tag">Game</span>
-      <span class="title">Mages</span>
-      <span class="desc">Explore and go pew pew. Play it in the browser.</span>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-
-    <!-- TODO: when it has a page, make this an <a href> and add the .arrow like Mages -->
-    <div class="sticker big s-skyfall">
-      <span class="tag">Soon</span>
-      <span class="title">Skyfall</span>
-      <span class="desc">A web UI for Klipper 3D printers, built on Moonraker. Modular and plugin-based, so you shape it to your printer. Also beautiful (to me).</span>
-    </div>
-
-    <details class="sticker opener s-work">
-      <summary>work</summary>
-      <div class="opener-body">
-        <p>Currently based around Dublin. I do software at <a href="https://www.amd.com" target="_blank" rel="noopener">AMD</a>, mostly on AI, embedded systems and networking. I've also worked on several cool <a href="https://www.heramission.space/hera-mission-milani-cubesat" target="_blank" rel="noopener">space projects</a>.</p>
+      <!-- TODO: when it has a page, make this an <a href> and add the .arrow like Mages -->
+      <div class="sticker big s-skyfall">
+        <span class="tag">Soon</span>
+        <span class="title">Skyfall</span>
+        <span class="desc"
+          >A web UI for Klipper 3D printers, built on Moonraker. Modular and
+          plugin-based, so you shape it to your printer. Also beautiful (to
+          me).</span
+        >
       </div>
-    </details>
 
-    <a href="https://github.com/lownpho" target="_blank" rel="noopener" class="sticker s-github">GitHub<span aria-hidden="true">↗</span></a>
+      <details class="sticker opener blob s-like">
+        <summary>I like</summary>
+        <div class="opener-body">
+          <ul>
+            <li>Printing</li>
+            <li>Crafts and the technology behind art</li>
+            <li>Playing</li>
+            <li>Food, especially when shared</li>
+            <li>Nature</li>
+            <li>Motorcycles</li>
+          </ul>
+        </div>
+      </details>
 
-    <details class="sticker opener blob s-like">
-      <summary>I like</summary>
-      <div class="opener-body">
-        <ul>
-          <li>Printing</li>
-          <li>Crafts and the technology behind art</li>
-          <li>Playing</li>
-          <li>Food, especially when shared</li>
-          <li>Nature</li>
-          <li>Motorcycles</li>
-        </ul>
-      </div>
-    </details>
+      <a
+        href="https://ie.linkedin.com/in/dariogreto"
+        target="_blank"
+        rel="noopener"
+        class="sticker s-linkedin"
+        >LinkedIn <span aria-hidden="true">↗</span></a
+      >
 
-    <a href="https://ie.linkedin.com/in/dariogreto" target="_blank" rel="noopener" class="sticker s-linkedin">LinkedIn <span aria-hidden="true">↗</span></a>
+      <!-- Poems from Gnòsi delle fànfole: data-poem picks one by title, without it it's random -->
+      <details class="sticker opener blob s-lonfo">
+        <summary>Il Lonfo</summary>
+        <div class="opener-body" data-fanfole="poem" data-poem="Il lonfo">
+          <h2>···</h2>
+          <p>···</p>
+          <p class="credit">Fosco Maraini, <em>Gnòsi delle fànfole</em></p>
+        </div>
+      </details>
 
-    <!-- Poems from Gnòsi delle fànfole: data-poem picks one by title, without it it's random -->
-    <details class="sticker opener blob s-lonfo">
-      <summary>Il Lonfo</summary>
-      <div class="opener-body" data-fanfole="poem" data-poem="Il lonfo">
-        <h2>···</h2>
-        <p>···</p>
-        <p class="credit">Fosco Maraini, <em>Gnòsi delle fànfole</em></p>
-      </div>
-    </details>
+      <details class="sticker opener s-believe">
+        <summary>I believe</summary>
+        <div class="opener-body">
+          <ul>
+            <li>
+              Engineering is beautiful, but ultimately it's <strong>a means to an end</strong>. A
+              good enough result is often better than a flawless design.
+            </li>
+            <li>
+              People should be <strong>kind</strong> to each other, and lend a hand to whoever is
+              a step behind them.
+            </li>
+            <li>
+              AI is good. It's our responsibility to use it to <strong>reduce social
+              inequalities</strong>.
+            </li>
+            <li>Everyone should feel <strong>welcome, understood and included</strong>.</li>
+          </ul>
+        </div>
+      </details>
+    </main>
 
-    <details class="sticker opener s-believe">
-      <summary>I believe</summary>
-      <div class="opener-body">
-        <ul>
-          <li>Engineering has a beauty of its own, but ultimately it's a means to an end. A good enough result is often better than a flawless design.</li>
-          <li>People should be kind to each other, and lend a hand to whoever is one step behind them.</li>
-          <li>AI is a big step towards a universal basic income. Everyone should do their part to make it happen.</li>
-          <li>Everyone should feel welcome, understood and included.</li>
-        </ul>
-      </div>
-    </details>
+    <!-- phones only: hint that there's more below, hides after the first scroll -->
+    <button class="sticker scroll-cta" type="button">
+      more below <span aria-hidden="true">↓</span>
+    </button>
 
-  </main>
+    <script>
+      // Openers: any click closes open ones; opening one widens it if it is
+      // taller than the screen, then (desktop) nudges it back inside the viewport.
+      const desktop = matchMedia("(min-width: 1100px)");
 
-  <script>
-    // Desktop: each .big sticker gets its own grid row (rows 1-2 are title and
-    // tagline), cycling left, right, centre so the page zig-zags the same way every load.
-    document.querySelectorAll('.big').forEach((el, i) => {
-      el.style.setProperty('--col', [1, 7, 4][i % 3]);
-      el.style.setProperty('--row', i + 3);
-    });
+      function keepOnScreen(d) {
+        d.style.translate = "";
+        const m = 16,
+          x = d.offsetLeft,
+          y = d.offsetTop,
+          w = d.offsetWidth,
+          h = d.offsetHeight;
+        const dx = Math.max(m - x, Math.min(0, innerWidth - m - (x + w)));
+        const dy = Math.max(m - y, Math.min(0, innerHeight - m - (y + h)));
+        d.style.translate = `${dx}px ${dy}px`;
+      }
 
-    // Openers (desktop): before one opens, pin it to the grid cell it sits in,
-    // so it grows in place and the auto-placed stickers flow around it.
-    // Closing clears the pin and the layout returns to exactly what it was.
-    const desk = document.querySelector('.desk');
-    const desktop = matchMedia('(min-width: 1100px)');
-
-    // pixel offset where each grid track starts (resolved sizes include implicit rows)
-    const trackStarts = (sizes, gap) => {
-      let at = 0;
-      return sizes.split(' ').map(s => { const start = at; at += parseFloat(s) + parseFloat(gap); return start; });
-    };
-    const bigCol = row => {
-      const big = [...document.querySelectorAll('.big')].find(b => +b.style.getPropertyValue('--row') === row);
-      return big && +big.style.getPropertyValue('--col');
-    };
-
-    function pin(d) {
-      if (!desktop.matches) return;
-      const cs = getComputedStyle(desk);
-      const x = d.offsetLeft - desk.offsetLeft - parseFloat(cs.paddingLeft);
-      const y = d.offsetTop - desk.offsetTop - parseFloat(cs.paddingTop);
-      const rows = trackStarts(cs.gridTemplateRows, cs.rowGap);
-      const r = rows.findLastIndex(s => s <= y);
-      // closed stickers span 3 and sit centred, so the track under the centre (0-based) is the 1-based start
-      const col = trackStarts(cs.gridTemplateColumns, cs.columnGap).findLastIndex(s => s <= x + d.offsetWidth / 2);
-      const b = bigCol(r + 1);
-      // 6 wide on the side free of the row's .big.
-      const [start, span] = b === 1 ? [7, 6] : b === 7 ? [1, 6] : b ? [Math.min(col, 10), 3] : [Math.min(Math.max(col, 1), 7), 6];
-      d.style.gridColumn = `${start} / span ${span}`;
-      d.style.gridRow = r + 1;
-      d.style.marginTop = `${y - rows[r]}px`; // top edge stays where it was
-    }
-
-    function unpin(d) {
-      d.classList.remove('wide');
-      d.style.gridColumn = d.style.gridRow = d.style.marginTop = '';
-    }
-
-    document.querySelectorAll('details.sticker').forEach(d => {
-      d.addEventListener('toggle', () => {
-        if (!d.open) return unpin(d);
-        // still taller than the screen: flow into columns, full row if no .big is in the way
-        if (d.offsetHeight > innerHeight) {
-          d.classList.add('wide');
-          if (desktop.matches && !bigCol(+d.style.gridRow)) d.style.gridColumn = '1 / -1';
-        }
-        d.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      document.querySelectorAll("details.sticker").forEach((d) => {
+        d.addEventListener("toggle", () => {
+          if (!d.open) {
+            d.classList.remove("wide");
+            d.style.translate = "";
+            return;
+          }
+          if (d.offsetHeight > innerHeight - 32) d.classList.add("wide");
+          if (desktop.matches) keepOnScreen(d);
+          else d.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        });
       });
-    });
 
-    // FLIP: call before a layout change; next frame, every sticker that moved
-    // slides from its old spot to the new one (`translate` stacks on the tilt transform).
-    const stickers = document.querySelectorAll('.sticker');
-    const still = matchMedia('(prefers-reduced-motion: reduce)');
-    function flip() {
-      if (still.matches) return;
-      const before = [...stickers].map(el => [el, el.offsetLeft, el.offsetTop]);
-      requestAnimationFrame(() => before.forEach(([el, x, y]) => {
-        const dx = x - el.offsetLeft, dy = y - el.offsetTop;
-        if (dx || dy) el.animate({ translate: [`${dx}px ${dy}px`, '0 0'] },
-          { duration: 450, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }); // --ease-spring
-      }));
-    }
+      document.addEventListener("click", (e) => {
+        const clicked = e.target.closest(
+          "details.sticker > summary",
+        )?.parentElement;
+        document.querySelectorAll("details.sticker[open]").forEach((d) => {
+          if (d !== clicked) d.open = false;
+        });
+      });
+    </script>
 
-    // Any click closes open openers (unpinning them now, so the one being
-    // opened is measured in the closed layout); a summary click then pins its
-    // opener before the native toggle opens or closes it.
-    document.addEventListener('click', e => {
-      const clicked = e.target.closest('details.sticker > summary')?.parentElement;
-      const open = document.querySelectorAll('details.sticker[open]');
-      if (!clicked && !open.length) return;
-      flip();
-      open.forEach(d => { if (d !== clicked) { d.open = false; unpin(d); } });
-      if (clicked) clicked.open ? unpin(clicked) : pin(clicked);
-    });
-  </script>
+    <script>
+      const cta = document.querySelector(".scroll-cta");
+      function hideCta() {
+        const nothingBelow =
+          document.documentElement.scrollHeight <= innerHeight + 40;
+        if (scrollY > 40 || nothingBelow) {
+          cta.classList.add("gone");
+          removeEventListener("scroll", hideCta);
+        }
+      }
+      addEventListener("scroll", hideCta, { passive: true });
+      hideCta();
+      cta.addEventListener("click", () =>
+        scrollBy({ top: innerHeight * 0.7, behavior: "smooth" }),
+      );
+    </script>
 
-  <script data-root="" src="fanfole.js"></script>
-
-</body>
-
+    <script data-root="" src="fanfole.js"></script>
+  </body>
 </html>
